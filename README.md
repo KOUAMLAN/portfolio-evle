@@ -1,51 +1,43 @@
-# Portfolio Développeur - Evle Kouamlan
+# Portfolio Evle
 
-Ce projet est le portfolio de fin de parcours Intégrateur Web. Il a été réalisé avec React, TypeScript et Tailwind CSS.
+Application de portfolio personnel construite avec React, TypeScript, Vite et Tailwind CSS pour présenter mes projets, compétences et informations de contact.
 
-## 🚀 Installation
+## Fonctionnalités
 
-1. Cloner le projet :
-   ```bash
-   git clone https://github.com/votre-username/portfolio-evle.git
-   cd portfolio-evle
-   ```
+- Section Hero avec présentation et lien vers le CV.
+- Sections À propos, Compétences, Projets et Contact.
+- Design responsive optimisé mobile / desktop.
+- Intégration possible d'un chatbot IA pour les visiteurs (Gemini API).
 
-2. Installer les dépendances :
-   ```bash
-   npm install
-   ```
+## Stack technique
 
-3. Lancer en local :
-   ```bash
-   npm run dev
-   ```
-
-## 🛠️ Technologies
-- React (Vite)
-- TypeScript
+- React + TypeScript
+- Vite
 - Tailwind CSS
-- Framer Motion (Animations)
-- Google Gemini API (Chatbot IA)
+- ESLint / Prettier
 
-## 🌐 Déploiement
+## Installation
 
-Ce projet est optimisé pour être déployé sur **Vercel** ou **Netlify**.
+git clone https://github.com/KOUAMLAN/portfolio-evle.git
+cd portfolio-evle
+npm install
+npm run dev
 
-### Option 1 : Vercel (Recommandé)
-1. Poussez votre code sur GitHub.
-2. Créez un compte sur [Vercel](https://vercel.com).
-3. Cliquez sur "Add New Project" et sélectionnez votre dépôt GitHub.
-4. Dans "Environment Variables", ajoutez votre `GEMINI_API_KEY` si vous utilisez le chatbot.
-5. Cliquez sur "Deploy".
+text
 
-### Option 2 : GitHub Pages
-1. Installez le paquet `gh-pages` : `npm install gh-pages --save-dev`.
-2. Ajoutez `"homepage": "https://votre-username.github.io/portfolio-evle"` dans `package.json`.
-3. Ajoutez les scripts de déploiement dans `package.json`.
-4. Lancez `npm run deploy`.
+## Build pour la prod
 
-## ✅ Checklist Qualité
-- [x] HTML Sémantique (Header, Main, Footer, Article, Section)
-- [x] Accessibilité (Focus visible, Aria-labels, navigation clavier)
-- [x] Responsive Design (Mobile First)
-- [x] Performance (Lazy loading des images, code splitté)
+npm run build
+npm run preview
+
+text
+
+## Sécurité
+
+- Les clés API (comme Gemini) sont chargées via variables d'environnement.
+- Ne jamais committer les secrets dans le dépôt (`.env` est ignoré par Git).
+
+## Auteur
+
+- **Evle Kouamlan**
+- Portfolio : https://github.com/KOUAMLAN
