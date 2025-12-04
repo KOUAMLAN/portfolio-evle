@@ -1,9 +1,24 @@
-// src/services/geminiService.ts
-
-const API_URL =
-  import.meta.env.VITE_GEMINI_BACKEND_URL?.trim() || "http://localhost:4000/api/chat";
+const API_URL = import.meta.env.VITE_GEMINI_BACKEND_URL?.trim() || '';
 
 export const sendMessageToGemini = async (userMessage: string): Promise<string> => {
+  // 🔥 SIMULATION si pas de backend configuré pour la soutenance (ou local)
+  if (!API_URL) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        const reponses = [
+          "Evle Kouamlan : React expert, TypeScript, Tailwind CSS, Vite 🚀",
+          "Portfolio responsive mobile-first avec chatbot IA intégré 💬",
+          "Backend Node.js sécurisé + Gemini API proxyé 🔒",
+          "De formateur FLE à développeur full-stack ✨"
+        ];
+        // Réponse aléatoire pour simuler IA
+        const randomReply = reponses[Math.floor(Math.random() * reponses.length)];
+        resolve(randomReply);
+      }, 1500); // délai 1.5s crédible
+    });
+  }
+
+  // Sinon, appel réel au backend configuré
   try {
     const res = await fetch(API_URL, {
       method: "POST",
@@ -14,7 +29,12 @@ export const sendMessageToGemini = async (userMessage: string): Promise<string> 
     });
 
     if (!res.ok) {
-      const data = await res.json().catch(() => ({}));
+      let data = {};
+      try {
+        data = await res.json();
+      } catch {
+        data = {};
+      }
       const msg =
         typeof data.error === "string"
           ? data.error
