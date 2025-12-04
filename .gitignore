@@ -27,4 +27,4 @@ dist-ssr
 # Environment Variables (Protection de la clé API)
 .env
 .env.*
-!.env.example
+!.env.exampleKouamlan_Evle_1_portfolio_122025.pdf
