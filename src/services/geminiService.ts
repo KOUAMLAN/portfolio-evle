@@ -13,7 +13,7 @@ export const sendMessageToGemini = async (userMessage: string): Promise<string> 
           "Backend Node.js + Gemini API (proxy sécurisé en prod) 🔒",
           "De formateur FLE à développeur full-stack React ✨"
         ];
-        resolve(reponses[Math.floor(Math.random() * 4)]);
+        resolve(reponses[Math.floor(Math.random() * reponses.length)]);
       }, 1500);
     });
   }
@@ -28,8 +28,16 @@ export const sendMessageToGemini = async (userMessage: string): Promise<string> 
     });
 
     if (!res.ok) {
-      const data = await res.json().catch(() => ({}));
-      return `❌ Backend: ${data.error || 'Erreur serveur'}`;
+      let errorMsg = 'Erreur serveur';
+      try {
+        const data = await res.json();
+        if (data && typeof data.error === "string") {
+          errorMsg = data.error;
+        }
+      } catch {
+        // Ignore JSON parse error
+      }
+      return `❌ Backend: ${errorMsg}`;
     }
 
     const data = await res.json();
