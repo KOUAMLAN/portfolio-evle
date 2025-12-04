@@ -1,7 +1,7 @@
 const API_URL = import.meta.env.VITE_GEMINI_BACKEND_URL?.trim() || '';
 
 export const sendMessageToGemini = async (userMessage: string): Promise<string> => {
-  // 🔥 SIMULATION si pas de backend configuré pour la soutenance (ou local)
+  // 🔥 SIMULATION si pas de backend configuré
   if (!API_URL) {
     return new Promise(resolve => {
       setTimeout(() => {
@@ -11,14 +11,11 @@ export const sendMessageToGemini = async (userMessage: string): Promise<string> 
           "Backend Node.js sécurisé + Gemini API proxyé 🔒",
           "De formateur FLE à développeur full-stack ✨"
         ];
-        // Réponse aléatoire pour simuler IA
-        const randomReply = reponses[Math.floor(Math.random() * reponses.length)];
-        resolve(randomReply);
-      }, 1500); // délai 1.5s crédible
+        resolve(reponses[Math.floor(Math.random() * reponses.length)]);
+      }, 1500);
     });
   }
 
-  // Sinon, appel réel au backend configuré
   try {
     const res = await fetch(API_URL, {
       method: "POST",
@@ -29,17 +26,14 @@ export const sendMessageToGemini = async (userMessage: string): Promise<string> 
     });
 
     if (!res.ok) {
-      let data = {};
+      let errorMsg = "Erreur lors de la réponse de l'assistant IA.";
       try {
-        data = await res.json();
-      } catch {
-        data = {};
-      }
-      const msg =
-        typeof data.error === "string"
-          ? data.error
-          : "Erreur lors de la réponse de l'assistant IA.";
-      return `❌ ${msg}`;
+        const data = await res.json();
+        if (data && typeof data.error === "string") {
+          errorMsg = data.error;
+        }
+      } catch {}
+      return `❌ ${errorMsg}`;
     }
 
     const data = await res.json();
