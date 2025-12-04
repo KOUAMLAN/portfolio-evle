@@ -1,23 +1,23 @@
 # Portfolio Evle
 
-Application de portfolio personnel construite avec React, TypeScript, Vite et Tailwind CSS pour présenter mes projets, compétences et informations de contact.
+Application de portfolio personnel construite avec **React**, **TypeScript**, **Vite** et **Tailwind CSS** pour présenter mes projets, compétences et informations de contact.
 
 ## Fonctionnalités
 
-- Section Hero avec présentation et lien vers le CV.
-- Sections À propos, Compétences, Projets et Contact.
-- Design responsive optimisé mobile / desktop.
-- Intégration d'un chatbot IA pour les visiteurs via l’API Gemini (backend Node).
+- Section Hero avec présentation et lien vers le CV
+- Sections À propos, Compétences, Projets et Contact
+- Design responsive optimisé mobile / desktop
+- **Chatbot IA** pour les visiteurs via l'API Gemini (backend Node.js)
 
 ## Stack technique
 
-- React + TypeScript
-- Vite
-- Tailwind CSS
-- ESLint / Prettier
-- Backend Node.js / Express pour l’API Gemini
+- **React + TypeScript**
+- **Vite** (build ultra-rapide)
+- **Tailwind CSS** (design moderne)
+- **ESLint / Prettier** (code propre)
+- **Backend Node.js / Express** pour l'API Gemini
 
-## Installation (front)
+## 🚀 Installation rapide (front)
 
 git clone https://github.com/KOUAMLAN/portfolio-evle.git
 cd portfolio-evle
@@ -26,11 +26,11 @@ npm run dev
 
 text
 
-L’application sera disponible sur `http://localhost:5173`.
+L'application sera disponible sur `http://localhost:5173`.
 
-## Backend Gemini
+## 🤖 Backend Gemini (IA Chatbot)
 
-Le backend dédié à l’assistant IA se trouve dans le dossier `gemini-backend` à la racine du projet.
+Le backend dédié à l'assistant IA se trouve dans le dossier **`gemini-backend`** à la racine.
 
 ### Configuration
 
@@ -41,7 +41,7 @@ PORT=4000
 
 text
 
-### Installation et lancement du backend
+### Lancement backend
 
 cd gemini-backend
 npm install
@@ -49,32 +49,33 @@ npm start
 
 text
 
-Le backend expose une route `POST /api/chat` sur `http://localhost:4000/api/chat`.
+**Route exposée** : `POST /api/chat` sur `http://localhost:4000/api/chat`
 
-## Configuration du front pour l’IA
+## 🔌 Connexion front ↔ backend
 
-À la racine du projet (front), créer ou compléter le fichier `.env` :
+Dans `.env` à la racine (front) :
 
 VITE_GEMINI_BACKEND_URL=http://localhost:4000/api/chat
 
 text
 
-Le front utilise cette URL pour communiquer avec le backend Gemini et afficher les réponses de l’assistant dans le chatbot.
+## ⚡ Déploiement production
 
-## Build pour la prod
-
-npm run build
-npm run preview
+npm run build # Génère dist/
+gh-pages -d dist # Déploie sur GitHub Pages
 
 text
 
-## Sécurité
+**Site live** : https://evle-dev.fr
 
-- Les clés API (comme Gemini) sont chargées via des variables d'environnement.
-- Ne jamais committer les secrets dans le dépôt (`.env` est ignoré par Git).
-- Le backend Node (`gemini-backend`) est responsable des appels à l’API Gemini pour éviter d’exposer la clé dans le front.
+## 🔒 Sécurité
 
-## Auteur
+- ✅ Clés API en variables d'environnement (`.env` ignoré par Git)
+- ✅ Backend Node proxy pour Gemini (clé jamais exposée côté front)
+- ✅ Pas de secrets dans le code source
 
-- **Evle Kouamlan**
-- GitHub : https://github.com/KOUAMLAN
+## 👨‍💻 Auteur
+
+**Evle Kouamlan**  
+**Développeur Front-End & Intégrateur Web**  
+[GitHub](https://github.com/KOUAMLAN) | [Portfolio](https://evle-dev.fr)
