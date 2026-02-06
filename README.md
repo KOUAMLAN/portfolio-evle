@@ -77,5 +77,5 @@ text
 ## 👨‍💻 Auteur
 
 **Evle Kouamlan**  
-** développeur full stack **  
+** développeur full stack junior **  
 [GitHub](https://github.com/KOUAMLAN) | [Portfolio](https://evle-dev.fr)
