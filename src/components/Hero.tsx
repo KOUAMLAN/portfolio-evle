@@ -36,7 +36,7 @@ const Hero: React.FC = () => {
           
           {/* H3 rankingCoach - 2ème mot-clé */}
           <h3 className="text-xl md:text-2xl font-semibold text-gray-700">
-            développeur web freelance React/Node.js Yonne boulangeries PME
+            Développeur web freelance React/Node.js Yonne boulangeries PME
           </h3>
           
           {/* Paragraphe 3ème mot-clé */}
