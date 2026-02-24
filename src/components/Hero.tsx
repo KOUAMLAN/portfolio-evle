@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col-reverse md:flex-row items-center gap-12">
         
-        {/* Text Content */}
+        {/* Text Content - rankingCoach MOTS-CLÉS ICI */}
         <motion.div 
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -24,16 +24,25 @@ const Hero: React.FC = () => {
             Disponible pour opportunités
           </div>
           
+          {/* H1 rankingCoach - MOT-CLÉS EXACTS */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-extrabold text-secondary leading-tight tracking-tight">
-            {PERSONAL_INFO.name}
+            développeur full stack | développeur web freelance | développeur react
           </h1>
 
+          {/* H2 rankingCoach - 1er mot-clé */}
           <h2 className="text-2xl md:text-3xl font-heading font-bold text-primary">
-            {PERSONAL_INFO.title}
+            Evle-Créations : développeur full stack expert Cosne-sur-Loire
           </h2>
           
+          {/* H3 rankingCoach - 2ème mot-clé */}
+          <h3 className="text-xl md:text-2xl font-semibold text-gray-700">
+            développeur web freelance React/Node.js Yonne boulangeries PME
+          </h3>
+          
+          {/* Paragraphe 3ème mot-clé */}
           <p className="text-lg md:text-xl text-gray-600 max-w-lg mx-auto md:mx-0 leading-relaxed font-medium">
-            {PERSONAL_INFO.tagline}
+            Spécialiste développeur react pour sites vitrines 3500€, applications fullstack 6000€. 
+            Lighthouse 95+ garanti Cosne/Auxerre/Sens/Joigny.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
@@ -53,22 +62,22 @@ const Hero: React.FC = () => {
           </div>
 
           <div className="flex justify-center md:justify-start gap-6 pt-4">
-             {PERSONAL_INFO.socials.map((social) => (
-                 <a 
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-gray-400 hover:text-primary transition-colors focus:outline-none focus:text-primary transform hover:scale-110"
-                    aria-label={`Visiter mon profil ${social.name}`}
-                 >
-                     <social.icon size={24} />
-                 </a>
-             ))}
+           {PERSONAL_INFO.socials.map((social) => (
+              <a 
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-gray-400 hover:text-primary transition-colors focus:outline-none focus:text-primary transform hover:scale-110"
+                aria-label={`Visiter mon profil ${social.name}`}
+              >
+                <social.icon size={24} />
+              </a>
+            ))}
           </div>
         </motion.div>
         
-        {/* Image / Avatar Area */}
+        {/* Image / Avatar Area - INCHANGÉ */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -83,47 +92,45 @@ const Hero: React.FC = () => {
                alt={`Portrait de ${PERSONAL_INFO.name}`}
                className="relative w-full h-full object-cover rounded-full border-4 border-white shadow-2xl z-10"
                loading="eager"
-             />
+            />
 
-             {/* Badge 1: React & TS (Top Left) */}
-             <motion.div 
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -left-4 md:top-0 md:-left-8 bg-white p-3 rounded-xl shadow-lg z-20 flex items-center gap-2 border border-blue-100"
-             >
-                <div className="text-blue-500 bg-blue-50 p-1.5 rounded-lg">
-                    <Atom size={20} />
-                </div>
-                <span className="font-bold text-secondary text-sm">React & TS</span>
-             </motion.div>
+            {/* Badges inchangés */}
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-4 -left-4 md:top-0 md:-left-8 bg-white p-3 rounded-xl shadow-lg z-20 flex items-center gap-2 border border-blue-100"
+            >
+              <div className="text-blue-500 bg-blue-50 p-1.5 rounded-lg">
+                  <Atom size={20} />
+              </div>
+              <span className="font-bold text-secondary text-sm">React & TS</span>
+            </motion.div>
 
-             {/* Badge 2: Accessibility (Right) */}
-             <motion.div 
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute top-10 -right-8 md:top-20 md:-right-12 bg-white p-3 rounded-xl shadow-lg z-20 flex items-center gap-2 border border-green-100"
-             >
-                <div className="text-green-600 bg-green-50 p-1.5 rounded-lg">
-                    <span className="font-bold text-lg">Aa</span>
-                </div>
-                <span className="font-bold text-secondary text-sm">Accessibilité</span>
-             </motion.div>
+            <motion.div 
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              className="absolute top-10 -right-8 md:top-20 md:-right-12 bg-white p-3 rounded-xl shadow-lg z-20 flex items-center gap-2 border border-green-100"
+            >
+              <div className="text-green-600 bg-green-50 p-1.5 rounded-lg">
+                  <span className="font-bold text-lg">Aa</span>
+              </div>
+              <span className="font-bold text-secondary text-sm">Accessibilité</span>
+            </motion.div>
 
-             {/* Badge 3: Expertise React (Bottom Right) - REMPLACEMENT DU CV */}
-             <motion.div 
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 1 }}
-                className="absolute -bottom-4 -right-4 bg-white p-4 rounded-xl shadow-xl z-20 flex items-center gap-3 border border-gray-100"
-             >
-                <div className="bg-primary/10 p-2 rounded-full text-primary">
-                    <Atom size={20} />
-                </div>
-                <div>
-                    <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">Expertise</p>
-                    <p className="text-sm font-bold text-secondary">React.js</p>
-                </div>
-             </motion.div>
+            <motion.div 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="absolute -bottom-4 -right-4 bg-white p-4 rounded-xl shadow-xl z-20 flex items-center gap-3 border border-gray-100"
+            >
+              <div className="bg-primary/10 p-2 rounded-full text-primary">
+                  <Atom size={20} />
+              </div>
+              <div>
+                  <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">Expertise</p>
+                  <p className="text-sm font-bold text-secondary">React.js</p>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
