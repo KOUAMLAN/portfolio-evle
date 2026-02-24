@@ -2,10 +2,9 @@ import { Github, Linkedin, Mail } from "lucide-react";
 import { Project, Social } from "./types";
 
 export const PERSONAL_INFO = {
-  name: "Evle-Créations",
-  title: "Développeur Web Freelance Expert en Création de Sites Internet",
-  tagline:
-    "Evle-Créations : Votre Partenaire pour des Projets Web Modernes et Performants",
+  name: "développeur full stack | développeur web freelance | développeur react",
+  title: "Evle-Créations - Expert Cosne-sur-Loire Yonne",
+  tagline: "développeur full stack React/Node.js boulangeries PME 3500€",
   email: "evlekouamlanwilliams@yahoo.fr",
   socials: [
     { name: "GitHub", url: "https://github.com/KOUAMLAN", icon: Github },
