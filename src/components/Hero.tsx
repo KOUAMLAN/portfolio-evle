@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
 
           {/* H2 rankingCoach - 1er mot-clé */}
           <h2 className="text-2xl md:text-3xl font-heading font-bold text-primary">
-            Evle-Créations : développeur full stack expert Cosne-sur-Loire
+            Evle-Créations : développeur full stack expert 
           </h2>
           
           {/* H3 rankingCoach - 2ème mot-clé */}
