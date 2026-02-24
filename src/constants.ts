@@ -20,10 +20,10 @@ export const PERSONAL_INFO = {
   ] as Social[],
 };
 
-// ✅ OPENCLASSROOMS CORRIGÉ = https://openclassrooms.com/fr/account
+
 export const BACKLINKS: Backlink[] = [
   { name: "OpenClassrooms", url: "https://openclassrooms.com/fr/account", icon: BookOpen, label: "Mon profil formation" },
-  { name: "React Lyon", url: "https://www.meetup.com/fr-FR/react-lyon/", icon: Users, label: "Communauté dev" },
+  { name: "React Lyon", url: "https://www.meetup.com/fr-FR/react-lyon/", icon: Users, label: "Communauté dev Lyon" },
   { name: "Portail Freelance", url: "https://www.portail-autoentrepreneur.fr/", icon: Code, label: "Ressources freelance" },
 ];
 
