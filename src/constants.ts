@@ -9,22 +9,14 @@ export const PERSONAL_INFO = {
   email: "evlekouamlanwilliams@yahoo.fr",
   socials: [
     { name: "GitHub", url: "https://github.com/KOUAMLAN", icon: Github },
-    {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/in/kouamlan-williams-evle-a107ab180",
-      icon: Linkedin,
-    },
-    {
-      name: "Email",
-      url: "mailto:evlekouamlanwilliams@yahoo.fr",
-      icon: Mail,
-    },
+    { name: "LinkedIn", url: "https://www.linkedin.com/in/kouamlan-williams-evle-a107ab180", icon: Linkedin },
+    { name: "Email", url: "mailto:evlekouamlanwilliams@yahoo.fr", icon: Mail },
   ] as Social[],
 };
 
 export const ABOUT_DATA = {
   act1_identity:
-    "Faites appel à Evle-Créations, votre développeur web freelance. Expert full stack et spécialiste React pour créer des sites web performants.",
+    "Faites appel à Evle-Créations, votre développeur full stack, développeur web freelance et développeur react. Expert React et TypeScript pour créer des sites web performants.",
   act2_journey:
     "Spécialisé dans la conception de sites internet sur mesure, j’allie esthétique moderne, accessibilité et performance. Mon expertise full stack me permet de maîtriser l’ensemble du processus.",
   act3_stack:
@@ -115,14 +107,11 @@ export const PROJECTS: Project[] = [
   },
 ];
 
-// 🚀 STRATÉGIE X (Twitter) - 4 types de posts
 export const SOCIAL_STRATEGY_X = {
   info_text: {
     daily: "Postez quotidiennement pour visibilité maximale.",
     tip: "4 types de posts pour une stratégie originale et diversifiée.",
   },
-
-  // 1️⃣ Post promotionnel
   liens_promo: {
     title: "Nouveau portfolio React freelance ! 🚀",
     content:
@@ -132,19 +121,13 @@ export const SOCIAL_STRATEGY_X = {
       "#ReactJS #DéveloppeurFreelance #FullStack #TypeScript #WebDev",
     cta: "Découvrez le portfolio et boostez votre projet 🚀",
   },
-
-  // 2️⃣ Post interactif (Quiz)
   quiz_interaction: {
-    question:
-      "Quelle techno préférez-vous pour vos projets web ? 👇",
+    question: "Quelle techno préférez-vous pour vos projets web ? 👇",
     options: ["React.js ⚛️", "Vue.js", "Angular", "Svelte"],
     sondage: "Quiz / Sondage interactif",
   },
-
-  // 3️⃣ Thread éducatif
   thread_educatif: {
-    hook:
-      "Pourquoi React + TypeScript est un combo puissant en 2026 ? 🧵👇",
+    hook: "Pourquoi React + TypeScript est un combo puissant en 2026 ? 🧵👇",
     points: [
       "1️⃣ Typage sécurisé → moins de bugs",
       "2️⃣ Meilleure maintenabilité long terme",
@@ -153,15 +136,11 @@ export const SOCIAL_STRATEGY_X = {
     ],
     hashtags: "#ReactJS #TypeScript #DevTips #WebDevelopment",
   },
-
-  // 4️⃣ Preuve sociale / Projet
   preuve_sociale: {
-    title:
-      "Cas client : Application bancaire performante ⚡",
+    title: "Cas client : Application bancaire performante ⚡",
     content:
       "Dashboard React + Redux connecté API sécurisée JWT. Authentification robuste et UX fluide.",
-    hashtags:
-      "#ReactDeveloper #FullStack #FreelanceWeb #CaseStudy",
+    hashtags: "#ReactDeveloper #FullStack #FreelanceWeb #CaseStudy",
     cta: "Besoin d’un projet similaire ? Contactez-moi 📩",
   },
 };
