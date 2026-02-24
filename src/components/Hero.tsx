@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Atom, Github, Linkedin } from 'lucide-react';
+import { ArrowRight, Atom, Github, Linkedin, BookOpen, Users } from 'lucide-react';
 import { PERSONAL_INFO } from '../constants';
 import { motion } from 'framer-motion';
 
@@ -61,19 +61,41 @@ const Hero: React.FC = () => {
             </a>
           </div>
 
-          <div className="flex justify-center md:justify-start gap-6 pt-4">
-           {PERSONAL_INFO.socials.map((social) => (
+          {/* ✅ BACKLINKS SOCIAUX - rankingCoach */}
+          <div className="flex flex-wrap justify-center md:justify-start gap-6 pt-6 pb-4">
+            {PERSONAL_INFO.socials.map((social) => (
               <a 
                 key={social.name}
                 href={social.url}
                 target="_blank"
-                rel="noreferrer"
-                className="text-gray-400 hover:text-primary transition-colors focus:outline-none focus:text-primary transform hover:scale-110"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center gap-1 p-3 bg-white/50 hover:bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-primary/50"
                 aria-label={`Visiter mon profil ${social.name}`}
               >
-                <social.icon size={24} />
+                <social.icon size={28} className="text-gray-600 group-hover:text-primary transition-colors" />
+                <span className="text-xs font-medium text-gray-700 group-hover:text-primary">{social.name}</span>
               </a>
             ))}
+          </div>
+
+          {/* ✅ BACKLINKS ÉDUCATIFS - OpenClassrooms + Communauté */}
+          <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-2">
+            <a 
+              href="https://openclassrooms.com/fr/members/6723456" 
+              target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-50 to-blue-50 text-green-700 rounded-lg text-sm font-medium hover:shadow-md transition-all border border-green-200 hover:border-green-300"
+            >
+              <BookOpen size={18} />
+              OpenClassrooms RNCP
+            </a>
+            <a 
+              href="https://www.meetup.com/fr-FR/react-lyon/" 
+              target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-50 to-indigo-50 text-purple-700 rounded-lg text-sm font-medium hover:shadow-md transition-all border border-purple-200 hover:border-purple-300"
+            >
+              <Users size={18} />
+              React Lyon Meetup
+            </a>
           </div>
         </motion.div>
         
