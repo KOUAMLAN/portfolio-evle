@@ -1,6 +1,14 @@
 import { Github, Linkedin, Mail, BookOpen, Users, Code } from "lucide-react";
 import { Project, Social } from "./types";
 
+// Interface pour BACKLINKS (différent de Social)
+interface Backlink {
+  name: string;
+  url: string;
+  icon: any;
+  label: string;
+}
+
 export const PERSONAL_INFO = {
   name: "Evle-Créations",
   title: "Développeur Web Freelance Expert en Création de Sites Internet",
@@ -13,14 +21,13 @@ export const PERSONAL_INFO = {
   ] as Social[],
 };
 
-// ✅ BACKLINKS CORRIGÉS - Compatible Social[]
-export const BACKLINKS = [
+// ✅ BACKLINKS - Nouvelle interface (✅ ERREUR CORRIGÉE)
+export const BACKLINKS: Backlink[] = [
   { name: "OpenClassrooms", url: "https://openclassrooms.com/fr/members/6723456", icon: BookOpen, label: "Diplôme RNCP" },
   { name: "React Lyon", url: "https://www.meetup.com/fr-FR/react-lyon/", icon: Users, label: "Communauté dev" },
   { name: "Portail Freelance", url: "https://www.portail-autoentrepreneur.fr/", icon: Code, label: "Ressources freelance" },
-] as Social[];
+];
 
-// Reste INCHANGÉ
 export const ABOUT_DATA = {
   act1_identity:
     "Faites appel à Evle-Créations, votre développeur full stack, développeur web freelance et développeur react. Expert React et TypeScript pour créer des sites web performants.",
