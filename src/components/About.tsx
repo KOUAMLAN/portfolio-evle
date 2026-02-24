@@ -1,6 +1,6 @@
 import React from 'react';
 import { ABOUT_DATA } from '../constants';
-import { BookOpen, Code, Lightbulb, Rocket } from 'lucide-react';
+import { BookOpen, Code, Lightbulb, Rocket, GraduationCap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const About: React.FC = () => {
@@ -17,6 +17,41 @@ const About: React.FC = () => {
           <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
         </motion.div>
         
+        {/* ✅ CERTIFICATIONS BACKLINKS - rankingCoach */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="mb-12 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-100 shadow-sm"
+        >
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
+            <div className="p-3 bg-white rounded-xl shadow-sm border border-blue-200">
+              <GraduationCap size={28} className="text-primary" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-primary mb-2 font-heading">Formations & Certifications</h3>
+              <div className="flex flex-wrap gap-3">
+                <a 
+                  href="https://openclassrooms.com/fr/members/6723456" 
+                  target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200 hover:border-primary text-sm font-medium"
+                >
+                  <GraduationCap size={16} className="text-green-600" />
+                  OpenClassrooms RNCP
+                </a>
+                <a 
+                  href="https://www.credly.com/badges/ton-badge" 
+                  target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200 hover:border-primary text-sm font-medium"
+                >
+                  React Certification
+                </a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         <div className="grid gap-8">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
