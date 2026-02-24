@@ -1,6 +1,6 @@
 import React from 'react';
-import { PERSONAL_INFO } from '../constants';
-import { BookOpen, Users, Code } from 'lucide-react';
+import { PERSONAL_INFO, BACKLINKS } from '../constants';
+import { BookOpen, Users, Code, Star, ExternalLink } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const quickLinks = [
@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
     <footer className="bg-slate-900 border-t border-slate-800 py-12 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-8 mb-8">
-          {/* Liens rapides BACKLINKS */}
+          {/* ✅ BACKLINKS RAPIDES */}
           <div className="flex flex-wrap gap-4">
             {quickLinks.map((link, index) => (
               <a
@@ -30,8 +30,20 @@ const Footer: React.FC = () => {
             ))}
           </div>
           
-          {/* Copyright */}
-          <div className="text-center md:text-right">
+          {/* ✅ LIEN rankingCoach ÉVALUATION */}
+          <div className="text-center md:text-right space-y-2">
+            <div className="flex items-center justify-end gap-2 text-xs bg-green-500/20 p-3 rounded-lg border border-green-500/30">
+              <Star size={16} className="text-yellow-400 animate-pulse" />
+              <a 
+                href="https://goshort.io/_32a7b1b7934d3b43c831eadc54a3925c"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold hover:text-yellow-300 transition-colors group"
+              >
+                ⭐ Évaluer mon service
+                <ExternalLink size={12} className="inline ml-1 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
             <p className="text-slate-400 text-sm font-sans">
               © {new Date().getFullYear()} {PERSONAL_INFO.name}. Tous droits réservés. | 
               <a href="https://evle-dev.fr" className="hover:text-primary font-semibold ml-1">Portfolio React</a>
