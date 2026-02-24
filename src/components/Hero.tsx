@@ -36,12 +36,12 @@ const Hero: React.FC = () => {
           
           {/* H3 rankingCoach - 2ème mot-clé */}
           <h3 className="text-xl md:text-2xl font-semibold text-gray-700">
-            Développeur web freelance React/Node.js Yonne boulangeries PME
+            Développeur web freelance React/Node.js
           </h3>
           
           {/* Paragraphe 3ème mot-clé */}
           <p className="text-lg md:text-xl text-gray-600 max-w-lg mx-auto md:mx-0 leading-relaxed font-medium">
-            Spécialiste développeur react pour sites vitrines 3500€, applications fullstack 6000€. 
+            Spécialiste développeur react pour sites vitrines , applications fullstack . 
             Lighthouse 95+ garanti.
           </p>
           
