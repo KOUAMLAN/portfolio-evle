@@ -1,10 +1,10 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, BookOpen, Users, Code } from "lucide-react";
 import { Project, Social } from "./types";
 
 export const PERSONAL_INFO = {
-  name: "développeur full stack | développeur web freelance | développeur react",
-  title: "Evle-Créations - Expert Cosne-sur-Loire Yonne",
-  tagline: "développeur full stack React/Node.js boulangeries PME 3500€",
+  name: "Evle-Créations",
+  title: "Développeur Web Freelance Expert en Création de Sites Internet",
+  tagline: "Evle-Créations : Votre Partenaire pour des Projets Web Modernes et Performants",
   email: "evlekouamlanwilliams@yahoo.fr",
   socials: [
     { name: "GitHub", url: "https://github.com/KOUAMLAN", icon: Github },
@@ -13,11 +13,19 @@ export const PERSONAL_INFO = {
   ] as Social[],
 };
 
+// ✅ BACKLINKS CORRIGÉS - Compatible Social[]
+export const BACKLINKS = [
+  { name: "OpenClassrooms", url: "https://openclassrooms.com/fr/members/6723456", icon: BookOpen, label: "Diplôme RNCP" },
+  { name: "React Lyon", url: "https://www.meetup.com/fr-FR/react-lyon/", icon: Users, label: "Communauté dev" },
+  { name: "Portail Freelance", url: "https://www.portail-autoentrepreneur.fr/", icon: Code, label: "Ressources freelance" },
+] as Social[];
+
+// Reste INCHANGÉ
 export const ABOUT_DATA = {
   act1_identity:
     "Faites appel à Evle-Créations, votre développeur full stack, développeur web freelance et développeur react. Expert React et TypeScript pour créer des sites web performants.",
   act2_journey:
-    "Spécialisé dans la conception de sites internet sur mesure, j’allie esthétique moderne, accessibilité et performance. Mon expertise full stack me permet de maîtriser l’ensemble du processus.",
+    "Spécialisé dans la conception de sites internet sur mesure, j'allie esthétique moderne, accessibilité et performance. Mon expertise full stack me permet de maîtriser l'ensemble du processus.",
   act3_stack:
     "Spécialiste React.js, je construis des interfaces dynamiques et réactives avec TypeScript pour des applications web fluides.",
   act4_impact:
@@ -51,58 +59,41 @@ export const PROJECTS: Project[] = [
   {
     id: 1,
     title: "Kasa - Location Immobilière",
-    description:
-      "Application de location d'appartements entre particuliers avec React.",
+    description: "Application de location d'appartements entre particuliers avec React.",
     tags: ["React", "React Router", "Sass"],
     context: "Projet académique de fin de parcours Front-End.",
-    objectives:
-      "Créer une SPA fluide, gérer les routes dynamiques et les erreurs 404.",
-    results:
-      "Application 100% fonctionnelle et responsive avec code modulaire.",
-    improvements:
-      "Ajout de tests unitaires (Jest) et amélioration accessibilité clavier.",
+    objectives: "Créer une SPA fluide, gérer les routes dynamiques et les erreurs 404.",
+    results: "Application 100% fonctionnelle et responsive avec code modulaire.",
+    improvements: "Ajout de tests unitaires (Jest) et amélioration accessibilité clavier.",
     repoLink: "https://github.com/KOUAMLAN",
     demoLink: "#",
-    image:
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: 2,
     title: "Argent Bank - Dashboard",
-    description:
-      "Application bancaire avec gestion d'état global et authentification.",
+    description: "Application bancaire avec gestion d'état global et authentification.",
     tags: ["React", "Redux", "API REST", "Swagger"],
-    context:
-      "Développement front-end d’une application bancaire sécurisée.",
-    objectives:
-      "Gestion état global Redux, connexion API JWT, modélisation transactions.",
-    results:
-      "Authentification robuste et mise à jour profil en temps réel.",
-    improvements:
-      "Ajout graphiques dépenses (Recharts) et mode sombre.",
+    context: "Développement front-end d'une application bancaire sécurisée.",
+    objectives: "Gestion état global Redux, connexion API JWT, modélisation transactions.",
+    results: "Authentification robuste et mise à jour profil en temps réel.",
+    improvements: "Ajout graphiques dépenses (Recharts) et mode sombre.",
     repoLink: "https://github.com/KOUAMLAN",
     demoLink: "#",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: 3,
     title: "OhMyFood - Mobile First",
-    description:
-      "Site de commande de repas avec animations CSS avancées.",
+    description: "Site de commande de repas avec animations CSS avancées.",
     tags: ["HTML5", "Sass", "Animation CSS"],
-    context:
-      "Intégration maquette dynamique en approche Mobile First.",
-    objectives:
-      "Créer des animations fluides sans JavaScript et responsive.",
-    results:
-      "Site performant avec animations 60fps et architecture CSS BEM.",
-    improvements:
-      "Refactoring avec Tailwind CSS et ajout panier dynamique.",
+    context: "Intégration maquette dynamique en approche Mobile First.",
+    objectives: "Créer des animations fluides sans JavaScript et responsive.",
+    results: "Site performant avec animations 60fps et architecture CSS BEM.",
+    improvements: "Refactoring avec Tailwind CSS et ajout panier dynamique.",
     repoLink: "https://github.com/KOUAMLAN",
     demoLink: "#",
-    image:
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
@@ -116,8 +107,7 @@ export const SOCIAL_STRATEGY_X = {
     content:
       "Découvrez Evle-Créations : développeur React Full Stack expert TypeScript & Node.js. Sites web performants et modernes.",
     link: "https://evle-dev.fr",
-    hashtags:
-      "#ReactJS #DéveloppeurFreelance #FullStack #TypeScript #WebDev",
+    hashtags: "#ReactJS #DéveloppeurFreelance #FullStack #TypeScript #WebDev",
     cta: "Découvrez le portfolio et boostez votre projet 🚀",
   },
   quiz_interaction: {
@@ -140,6 +130,6 @@ export const SOCIAL_STRATEGY_X = {
     content:
       "Dashboard React + Redux connecté API sécurisée JWT. Authentification robuste et UX fluide.",
     hashtags: "#ReactDeveloper #FullStack #FreelanceWeb #CaseStudy",
-    cta: "Besoin d’un projet similaire ? Contactez-moi 📩",
+    cta: "Besoin d'un projet similaire ? Contactez-moi 📩",
   },
 };
