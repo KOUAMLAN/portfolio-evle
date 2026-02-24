@@ -26,7 +26,7 @@ const Hero: React.FC = () => {
           
           {/* H1 rankingCoach - MOT-CLÉS EXACTS */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-extrabold text-secondary leading-tight tracking-tight">
-            développeur full stack | développeur web freelance | développeur react
+            Développeur full stack | développeur web freelance | développeur react
           </h1>
 
           {/* H2 rankingCoach - 1er mot-clé */}
@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
           {/* Paragraphe 3ème mot-clé */}
           <p className="text-lg md:text-xl text-gray-600 max-w-lg mx-auto md:mx-0 leading-relaxed font-medium">
             Spécialiste développeur react pour sites vitrines 3500€, applications fullstack 6000€. 
-            Lighthouse 95+ garanti Cosne/Auxerre/Sens/Joigny.
+            Lighthouse 95+ garanti.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
