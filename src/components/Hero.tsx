@@ -22,9 +22,17 @@ const Hero: React.FC = () => {
             Disponible pour opportunités
           </div>
           
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-extrabold text-secondary leading-tight tracking-tight">
-            Développeur full stack | Développeur web freelance | Développeur react
-          </h1>
+        <div className="flex items-center gap-4 mb-6">
+  <img 
+    src="/image/Logo.png"
+    alt="Evle-Créations"
+    className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 shadow-lg rounded-lg"
+    loading="lazy"
+  />
+  <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-extrabold text-secondary leading-tight tracking-tight flex-1">
+    Développeur full stack | Développeur web freelance | Développeur react
+  </h1>
+</div>
 
           <h2 className="text-2xl md:text-3xl font-heading font-bold text-primary">
             Evle-Créations : développeur full stack expert 
