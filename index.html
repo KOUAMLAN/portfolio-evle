@@ -4,6 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18078712899"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18078712899');
+    </script>
+
     <title>Développeur JavaScript freelance | Evle Williams</title>
     <meta
       name="description"
@@ -17,28 +26,7 @@
     <meta property="og:image" content="/image/hero-360w.webp" />
     <link rel="canonical" href="https://evle-dev.fr/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
     <link rel="preload" as="image" href="/image/hero-360w.webp" fetchpriority="high" />
-
-    <script>
-      window.addEventListener('load', function () {
-        setTimeout(function () {
-          if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-            var s = document.createElement('script');
-            s.async = true;
-            s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-1807871289';
-            document.head.appendChild(s);
-
-            window.dataLayer = window.dataLayer || [];
-            window.gtag = function () {
-              window.dataLayer.push(arguments);
-            };
-            window.gtag('js', new Date());
-            window.gtag('config', 'AW-1807871289');
-          }
-        }, 2000);
-      });
-    </script>
   </head>
   <body>
     <div id="root"></div>
