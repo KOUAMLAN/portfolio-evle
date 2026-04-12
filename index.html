@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Développeur JavaScript freelance | Evle Williams</title>
+    <meta
+      name="description"
+      content="Portfolio d'Evle Williams, développeur JavaScript freelance, expert en React, Full Stack, SEO et performance."
+    />
+    <meta property="og:title" content="Développeur JavaScript freelance | Evle Williams" />
+    <meta
+      property="og:description"
+      content="Création de sites web modernes, performants et accessibles pour professionnels et PME."
+    />
+    <meta property="og:image" content="/image/hero-360w.webp" />
+    <link rel="canonical" href="https://evle-dev.fr/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link
+      rel="preload"
+      as="image"
+      href="/image/hero-360w.webp"
+      fetchpriority="high"
+    />
+
+    <script>
+      if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-1807871289';
+        document.head.appendChild(s);
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () {
+          window.dataLayer.push(arguments);
+        };
+        window.gtag('js', new Date());
+        window.gtag('config', 'AW-1807871289');
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
