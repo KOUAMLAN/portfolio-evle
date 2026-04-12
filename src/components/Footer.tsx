@@ -7,14 +7,14 @@ const Footer: React.FC = () => {
     <footer className="bg-slate-900 border-t border-slate-800 py-12 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-8 mb-8">
-          <div className="text-slate-400 text-sm">
+          <div className="text-slate-300 text-sm">
             Développeur Full Stack React - Sites web performants et modernes
           </div>
-          
+
           <div className="text-center md:text-right space-y-2">
             <div className="flex items-center justify-end gap-2 text-xs bg-green-500/20 p-3 rounded-lg border border-green-500/30">
-              <Star size={16} className="text-yellow-400 animate-pulse" />
-              <a 
+              <Star size={16} className="text-yellow-400" />
+              <a
                 href="https://goshort.io/_32a7b1b7934d3b43c831eadc54a3925c"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -24,21 +24,22 @@ const Footer: React.FC = () => {
                 <ExternalLink size={12} className="inline ml-1 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
-            <p className="text-slate-400 text-sm font-sans">
-              © {new Date().getFullYear()} {PERSONAL_INFO.name}. Tous droits réservés. | 
+
+            <p className="text-slate-300 text-sm font-sans">
+              © {new Date().getFullYear()} {PERSONAL_INFO.name}. Tous droits réservés. |
               <a href="#hero" className="hover:text-primary font-semibold ml-1">Portfolio React</a>
             </p>
           </div>
         </div>
 
         <div className="flex justify-center md:justify-end gap-6 pb-4 pt-6 border-t border-slate-800">
-          {PERSONAL_INFO.socials.map((social, index) => (
-            <a 
-              key={index}
+          {PERSONAL_INFO.socials.map((social) => (
+            <a
+              key={social.name}
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-400 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-lg group"
+              className="text-slate-300 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-lg group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
               aria-label={`Visiter mon profil ${social.name}`}
             >
               <social.icon size={20} className="group-hover:scale-110 transition-transform" />
