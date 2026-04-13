@@ -17,14 +17,14 @@ const Contact: React.FC = () => {
       if (!formRef.current) throw new Error('Formulaire introuvable');
 
       const result = await emailjs.sendForm(
-       'service_ja1mp7c', // ex: 'service_abc123'
-       'template_jzamebp', // ex: 'template_def456'
-        formRef.current,
-        'MK-zSZzOHbNao2YJj'
+      'service_ja1mp7c', 
+      'template_jzamebp', 
+       formRef.current,
+       'MK-zSZzOHbNao2YJj'
       );
 
       console.log('EmailJS OK:', result.status);
-      setStatus('Nous vous répondrons rapidement.');
+      setStatus('Je vous répondrai rapidement.');
       formRef.current.reset();
       navigate('/merci');
     } catch (err) {
