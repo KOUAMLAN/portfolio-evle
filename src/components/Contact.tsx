@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import { PERSONAL_INFO } from '../constants';
 import { useNavigate } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 
@@ -7,31 +6,30 @@ const Contact: React.FC = () => {
   const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [status, setStatus] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
+    setStatus('');
 
     try {
       if (!formRef.current) throw new Error('Formulaire introuvable');
 
       const result = await emailjs.sendForm(
-     'service_ja1mp7c',  // ex: 'service_abc123'
- 'template_jzamebp', // ex: 'template_def456'
+       'service_ja1mp7c', // ex: 'service_abc123'
+       'template_jzamebp', // ex: 'template_def456'
         formRef.current,
-        'TA_PUBLIC_KEY'
+        'MK-zSZzOHbNao2YJj'
       );
 
       console.log('EmailJS OK:', result.status);
-      setError('Nous vous répondrons rapidement.');
+      setStatus('Nous vous répondrons rapidement.');
       formRef.current.reset();
       navigate('/merci');
-    } catch (err: any) {
+    } catch (err) {
       console.error('EmailJS ERROR:', err);
-      setError("Message transmis ! (Vérifiez votre EmailJS dashboard)");
-      navigate('/merci');
+      setStatus("Message transmis ! (Vérifiez votre EmailJS dashboard)");
     } finally {
       setLoading(false);
     }
@@ -39,8 +37,14 @@ const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="py-24 bg-slate-900 text-white relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" aria-hidden="true" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" aria-hidden="true" />
+      <div
+        className="absolute top-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"
+        aria-hidden="true"
+      />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h2 className="text-3xl font-heading font-bold mb-8">Me contacter</h2>
@@ -89,9 +93,9 @@ const Contact: React.FC = () => {
             />
           </div>
 
-          {error && (
-            <p className={`text-sm p-2 rounded ${error === 'Nous vous répondrons rapidement.' ? 'text-green-400 bg-green-900/20' : 'text-yellow-400 bg-yellow-900/20'}`}>
-              {error}
+          {status && (
+            <p className="text-sm p-2 rounded text-green-400 bg-green-900/20">
+              {status}
             </p>
           )}
 
