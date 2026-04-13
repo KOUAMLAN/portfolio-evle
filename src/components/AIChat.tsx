@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MessageCircle, X } from 'lucide-react';
-
+import { sendMessageToGemini } from "../services/geminiService";
 const AIChat: React.FC = () => {
   const [open, setOpen] = useState(false);
 
