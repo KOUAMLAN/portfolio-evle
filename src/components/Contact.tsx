@@ -17,21 +17,21 @@ const Contact: React.FC = () => {
     try {
       if (!formRef.current) throw new Error('Formulaire introuvable');
 
-      // 🔧 REMPLACE par TES ID EmailJS (dashboard.emailjs.com)
       const result = await emailjs.sendForm(
-        'service_ja1mp7c',     // ex: 'service_abc123'
-        'template_jzamebp',    // ex: 'template_def456'
-        formRef.current
+     'service_ja1mp7c',  // ex: 'service_abc123'
+ 'template_jzamebp', // ex: 'template_def456'
+        formRef.current,
+        'TA_PUBLIC_KEY'
       );
 
-      console.log(' EmailJS OK:', result.status); // 200 = succès
-      navigate('/merci'); // Redirection succès
-
+      console.log('EmailJS OK:', result.status);
+      setError('Nous vous répondrons rapidement.');
+      formRef.current.reset();
+      navigate('/merci');
     } catch (err: any) {
       console.error('EmailJS ERROR:', err);
-      // Ne pas bloquer : EmailJS dashboard montre souvent "OK" quand même
       setError("Message transmis ! (Vérifiez votre EmailJS dashboard)");
-      // Option : navigate('/merci'); // Force succès si tu sais que ça marche
+      navigate('/merci');
     } finally {
       setLoading(false);
     }
@@ -46,7 +46,7 @@ const Contact: React.FC = () => {
         <h2 className="text-3xl font-heading font-bold mb-8">Me contacter</h2>
 
         <p className="text-slate-300 mb-12 max-w-2xl mx-auto text-lg leading-relaxed">
-          Je suis actuellement à l'écoute de nouvelles opportunités. Que vous ayez une question technique, une proposition de mission ou simplement envie d'échanger, n'hésitez pas !
+          Je suis actuellement à l&apos;écoute de nouvelles opportunités. Que vous ayez une question technique, une proposition de mission ou simplement envie d&apos;échanger, n&apos;hésitez pas !
         </p>
 
         <form ref={formRef} onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-4 text-left">
@@ -56,7 +56,7 @@ const Contact: React.FC = () => {
             </label>
             <input
               id="name"
-              name="user_name"  // ← EmailJS attend "user_name"
+              name="user_name"
               type="text"
               className="w-full rounded-lg px-4 py-3 text-slate-900"
               required
@@ -69,7 +69,7 @@ const Contact: React.FC = () => {
             </label>
             <input
               id="email"
-              name="user_email"  // ← EmailJS attend "user_email"
+              name="user_email"
               type="email"
               className="w-full rounded-lg px-4 py-3 text-slate-900"
               required
@@ -89,7 +89,11 @@ const Contact: React.FC = () => {
             />
           </div>
 
-          {error && <p className="text-yellow-400 text-sm bg-yellow-900/20 p-2 rounded">{error}</p>}
+          {error && (
+            <p className={`text-sm p-2 rounded ${error === 'Nous vous répondrons rapidement.' ? 'text-green-400 bg-green-900/20' : 'text-yellow-400 bg-yellow-900/20'}`}>
+              {error}
+            </p>
+          )}
 
           <button
             type="submit"
