@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Merci: React.FC = () => {
+  useEffect(() => {
+    ;(window as Window & { gtag?: (...args: any[]) => void }).gtag?.("event", "conversion", {
+      send_to: "AW-18078712899/AkoaCPHy7J0cEMOIzaxD",
+      value: 1.0,
+      currency: "EUR",
+      transaction_id: "",
+    });
+  }, []);
+
   return (
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 px-4 text-white">
       <div className="max-w-xl text-center">
