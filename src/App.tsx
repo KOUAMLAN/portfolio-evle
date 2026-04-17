@@ -12,7 +12,7 @@ import Merci from "./services/pages/Merci";
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter basename="/portfolio-evle/">
+    <BrowserRouter>
       <div className="min-h-screen bg-background text-secondary font-sans selection:bg-primary selection:text-white">
         <Navbar />
         <Routes>
