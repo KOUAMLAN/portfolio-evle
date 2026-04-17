@@ -1,34 +1,35 @@
-import React, { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import emailjs from '@emailjs/browser';
+import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 
 const Contact: React.FC = () => {
   const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setStatus('');
+    setStatus("");
 
     try {
-      if (!formRef.current) throw new Error('Formulaire introuvable');
+      if (!formRef.current) throw new Error("Formulaire introuvable");
 
-      const result = await emailjs.sendForm(
-      'service_ja1mp7c', 
-      'template_jzamebp', 
-       formRef.current,
-       'MK-zSZzOHbNao2YJj'
+      await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        {
+          publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+        }
       );
 
-      console.log('EmailJS OK:', result.status);
-      setStatus('Je vous répondrai rapidement.');
+      setStatus("Message envoyé avec succès.");
       formRef.current.reset();
-      navigate('/merci');
+      navigate("/merci");
     } catch (err) {
-      console.error('EmailJS ERROR:', err);
+      console.error("EmailJS ERROR:", err);
       setStatus("Message transmis ! (Vérifiez votre EmailJS dashboard)");
     } finally {
       setLoading(false);
@@ -104,7 +105,7 @@ const Contact: React.FC = () => {
             disabled={loading}
             className="inline-block w-full px-8 py-4 text-lg font-bold text-white bg-primary rounded-lg hover:bg-blue-600 transition-all shadow-lg hover:shadow-primary/50 disabled:opacity-60"
           >
-            {loading ? 'Envoi en cours...' : 'Envoyer le message'}
+            {loading ? "Envoi en cours..." : "Envoyer le message"}
           </button>
         </form>
       </div>

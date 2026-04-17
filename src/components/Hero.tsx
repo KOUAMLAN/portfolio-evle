@@ -1,8 +1,10 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import { PERSONAL_INFO } from '../constants';
+import React from "react";
+import { ArrowRight } from "lucide-react";
+import { PERSONAL_INFO } from "../constants";
 
 const Hero: React.FC = () => {
+  const base = import.meta.env.BASE_URL;
+
   return (
     <section
       id="hero"
@@ -29,15 +31,9 @@ const Hero: React.FC = () => {
             </h2>
 
             <div className="hero-reveal hero-delay-3 flex flex-wrap gap-2 justify-center md:justify-start">
-              <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">
-                React
-              </span>
-              <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-sm font-semibold">
-                TypeScript
-              </span>
-              <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-sm font-semibold">
-                JavaScript
-              </span>
+              <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">React</span>
+              <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-sm font-semibold">TypeScript</span>
+              <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-sm font-semibold">JavaScript</span>
             </div>
 
             <p className="hero-reveal hero-delay-4 text-base md:text-lg text-gray-700 max-w-lg mx-auto md:mx-0 leading-relaxed">
@@ -80,8 +76,13 @@ const Hero: React.FC = () => {
           <div className="w-full md:w-1/2 flex justify-center relative py-8 md:py-0">
             <div className="relative w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[360px] md:h-[360px]">
               <img
-                src="/image/hero-360w.webp"
-                srcSet="/image/hero-360w.webp 360w, /image/hero-480w.webp 480w"
+                src={`${base}image/hero-360w.webp`}
+                srcSet={`
+                  ${base}image/hero-360w.webp 360w,
+                  ${base}image/hero-480w.webp 480w,
+                  ${base}image/hero-720w.webp 720w,
+                  ${base}image/hero.webp 1080w
+                `}
                 sizes="(max-width: 639px) 250px, (max-width: 767px) 300px, 360px"
                 alt="Evle Williams, développeur React freelance"
                 width="360"

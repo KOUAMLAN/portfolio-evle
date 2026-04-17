@@ -8,6 +8,7 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Confirmation from "./components/Confirmation";
+import Merci from "./services/pages/Merci";
 
 const App: React.FC = () => {
   return (
@@ -28,6 +29,7 @@ const App: React.FC = () => {
             }
           />
           <Route path="/confirmation" element={<Confirmation />} />
+          <Route path="/merci" element={<Merci />} />
         </Routes>
         <Footer />
       </div>
