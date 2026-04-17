@@ -11,7 +11,7 @@ import Confirmation from "./components/Confirmation";
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter basename="/portfolio-evle">
+    <BrowserRouter basename="/portfolio-evle/">
       <div className="min-h-screen bg-background text-secondary font-sans selection:bg-primary selection:text-white">
         <Navbar />
         <Routes>

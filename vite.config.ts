@@ -1,20 +1,20 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: '/portfolio-evle/',
+  base: "/portfolio-evle/",
   server: {
     port: 5173,
     open: true,
     host: true,
   },
   build: {
-    outDir: 'dist',
+    outDir: "dist",
     sourcemap: false,
-    target: 'es2020',
-    minify: 'esbuild',
-    cssMinify: 'esbuild',
+    target: "es2020",
+    minify: "esbuild",
+    cssMinify: "esbuild",
     reportCompressedSize: true,
   },
 });
