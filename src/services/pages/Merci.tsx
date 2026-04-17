@@ -1,46 +1,4 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import Confirmation from "./components/Confirmation";
-import Merci from "./services/pages/Merci";
-
-const App: React.FC = () => {
-  return (
-    <BrowserRouter basename="/portfolio-evle/">
-      <div className="min-h-screen bg-background text-secondary font-sans selection:bg-primary selection:text-white">
-        <Navbar />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <main>
-                <Hero />
-                <About />
-                <Skills />
-                <Projects />
-                <Contact />
-              </main>
-            }
-          />
-          <Route path="/confirmation" element={<Confirmation />} />
-          <Route path="/merci" element={<Merci />} />
-        </Routes>
-        <Footer />
-      </div>
-    </BrowserRouter>
-  );
-};
-
-export default App;
-Fichier Merci.tsx complet
-tsx
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Merci: React.FC = () => {
@@ -65,7 +23,7 @@ const Merci: React.FC = () => {
           to="/"
           className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-blue-600 text-white text-lg font-semibold hover:from-blue-600 hover:to-primary transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1"
         >
-          ← Retour à l&apos;accueil
+          ← Retour à l'accueil
         </Link>
       </div>
     </main>
