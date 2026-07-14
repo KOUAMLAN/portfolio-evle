@@ -35,6 +35,7 @@ interface ProjectDemoModalProps {
 type MobileTab = "demo" | "info";
 
 
+
 const ProjectDemoModal: React.FC<ProjectDemoModalProps> = ({
   project,
   onClose
@@ -45,16 +46,20 @@ const ProjectDemoModal: React.FC<ProjectDemoModalProps> = ({
     useRef<HTMLButtonElement>(null);
 
 
+
   const isMobile =
     useMediaQuery("(max-width:768px)");
 
 
-  const isNarrow =
-    useMediaQuery("(max-width:480px)");
+
+  const isSmallMobile =
+    useMediaQuery("(max-width:475px)");
+
 
 
   const [mobileTab,setMobileTab] =
     useState<MobileTab>("info");
+
 
 
   const [iframeError,setIframeError] =
@@ -62,68 +67,60 @@ const ProjectDemoModal: React.FC<ProjectDemoModalProps> = ({
 
 
 
+  // CORRECTION ICI
   const canEmbed =
-    !!project &&
-    hasLiveDemo(project.demoLink) &&
-    project.embedDemo === true;
-
-
-
-  const useIframe =
-    canEmbed &&
-    !iframeError &&
-    (
-      !isMobile ||
-      mobileTab === "demo"
+    Boolean(
+      project?.embedDemo &&
+      project.demoLink
     );
-
-
-
-  const showAside =
-    !isMobile ||
-    isNarrow ||
-    mobileTab === "info" ||
-    !canEmbed;
 
 
 
   useEffect(()=>{
 
+
     if(!project) return;
+
 
 
     setIframeError(false);
 
 
+
     setMobileTab(
-      isNarrow
+      isSmallMobile
       ? "info"
       : "demo"
     );
 
 
-    const oldOverflow =
+
+    const previousOverflow =
       document.body.style.overflow;
+
 
 
     document.body.style.overflow =
       "hidden";
 
 
-    const keyHandler =
-    (event:KeyboardEvent)=>{
 
-      if(event.key==="Escape"){
-        onClose();
-      }
+    const escapeHandler =
+      (event:KeyboardEvent)=>{
 
-    };
+        if(event.key==="Escape"){
+          onClose();
+        }
+
+      };
+
 
 
     window.addEventListener(
       "keydown",
-      keyHandler
+      escapeHandler
     );
+
 
 
     closeButtonRef.current?.focus();
@@ -133,12 +130,12 @@ const ProjectDemoModal: React.FC<ProjectDemoModalProps> = ({
     return ()=>{
 
       document.body.style.overflow =
-        oldOverflow;
+        previousOverflow;
 
 
       window.removeEventListener(
         "keydown",
-        keyHandler
+        escapeHandler
       );
 
     };
@@ -147,13 +144,36 @@ const ProjectDemoModal: React.FC<ProjectDemoModalProps> = ({
   },[
     project,
     onClose,
-    isNarrow
+    isSmallMobile
   ]);
 
 
 
 
-  if(!project) return null;
+
+  if(!project)
+    return null;
+
+
+
+
+
+  const showDemo =
+    canEmbed &&
+    !iframeError &&
+    (
+      !isMobile ||
+      mobileTab==="demo"
+    );
+
+
+
+  const showInfo =
+    !isMobile ||
+    isSmallMobile ||
+    mobileTab==="info";
+
+
 
 
 
@@ -162,62 +182,70 @@ const ProjectDemoModal: React.FC<ProjectDemoModalProps> = ({
     <AnimatePresence>
 
 
+
       <motion.div
 
         className="
-        fixed
-        inset-0
-        z-[100]
-        bg-black/60
-        backdrop-blur-sm
+          fixed
+          inset-0
+          bg-black/60
+          backdrop-blur-sm
+          z-[100]
         "
+
 
         initial={{
           opacity:0
         }}
 
+
         animate={{
           opacity:1
         }}
 
+
         exit={{
           opacity:0
         }}
+
 
         onClick={onClose}
 
       />
 
 
+
+
+
       <motion.div
+
 
         role="dialog"
 
         aria-modal="true"
 
+
         className="
-        fixed
-        inset-0
-        md:inset-6
-        lg:inset-10
-        z-[101]
-
-        flex
-        flex-col
-
-        bg-white
-
-        md:rounded-2xl
-
-        shadow-2xl
-
-        overflow-hidden
+          fixed
+          inset-2
+          sm:inset-4
+          md:inset-8
+          z-[101]
+          bg-white
+          rounded-xl
+          shadow-2xl
+          overflow-hidden
+          flex
+          flex-col
+          max-w-7xl
+          mx-auto
         "
+
 
 
         initial={{
           opacity:0,
-          scale:isMobile ? 1 : .95
+          scale:0.95
         }}
 
 
@@ -235,24 +263,34 @@ const ProjectDemoModal: React.FC<ProjectDemoModalProps> = ({
 
 
 
+
+
         <header
-        className="
-        flex
-        justify-between
-        items-center
-        px-4
-        py-3
-        border-b
-        bg-gray-50
-        "
+
+          className="
+            flex
+            items-center
+            justify-between
+            gap-3
+            px-3
+            sm:px-5
+            py-3
+            border-b
+            bg-gray-50
+          "
+
         >
 
 
           <h2
-          className="
-          font-bold
-          text-lg
-          "
+
+            className="
+              text-sm
+              sm:text-lg
+              font-bold
+              truncate
+            "
+
           >
 
             {project.title}
@@ -261,21 +299,22 @@ const ProjectDemoModal: React.FC<ProjectDemoModalProps> = ({
 
 
 
+
           <button
 
-          ref={closeButtonRef}
+            ref={closeButtonRef}
 
-          onClick={onClose}
+            onClick={onClose}
 
-          className="
-          p-2
-          rounded
-          hover:bg-gray-200
-          "
+            className="
+              p-2
+              rounded-lg
+              hover:bg-gray-200
+            "
 
           >
 
-            <X/>
+            <X size={22}/>
 
           </button>
 
@@ -286,231 +325,313 @@ const ProjectDemoModal: React.FC<ProjectDemoModalProps> = ({
 
 
 
-        {isMobile && canEmbed && !isNarrow && (
+
+        {
+          isMobile &&
+          canEmbed &&
+          !isSmallMobile && (
+
+
+          <div className="
+            flex
+            border-b
+          ">
+
+
+            <button
+
+              onClick={()=>
+                setMobileTab("demo")
+              }
+
+              className="
+                flex-1
+                py-3
+                text-sm
+                font-semibold
+              "
+
+            >
+
+              Démo
+
+            </button>
+
+
+
+
+            <button
+
+              onClick={()=>
+                setMobileTab("info")
+              }
+
+              className="
+                flex-1
+                py-3
+                text-sm
+                font-semibold
+              "
+
+            >
+
+              Informations
+
+            </button>
+
+
+          </div>
+
+
+        )}
+
+
+
+
 
         <div
-        className="
-        flex
-        border-b
-        "
-        >
-
-          <button
-
-          onClick={() =>
-            setMobileTab("demo")
-          }
 
           className="
-          flex-1
-          py-3
+            flex-1
+            overflow-auto
           "
-          >
 
-            Démo
-
-          </button>
-
-
-          <button
-
-          onClick={() =>
-            setMobileTab("info")
-          }
-
-          className="
-          flex-1
-          py-3
-          "
-          >
-
-            Informations
-
-          </button>
-
-
-        </div>
-
-        )}
-
-
-
-
-        <div
-        className="
-        flex-1
-        overflow-auto
-        "
         >
 
 
 
-        {useIframe && (
-
-        <iframe
-
-        src={project.demoLink}
-
-        title={project.title}
-
-        className="
-        w-full
-        h-full
-        min-h-[70vh]
-        border-0
-        "
-
-        loading="eager"
 
 
-        onError={()=>setIframeError(true)}
-
-        allow="
-        fullscreen;
-        autoplay
-        "
-
-        />
-
-        )}
+        {
+          showDemo && (
 
 
+          <div
 
-
-
-        {hasLiveDemo(project.demoLink)
-        &&
-        (!canEmbed || iframeError)
-        &&
-
-        (
-
-        <div
-        className="
-        flex
-        flex-col
-        items-center
-        justify-center
-        gap-5
-        p-8
-        min-h-[60vh]
-        "
-        >
-
-          <MonitorPlay size={45}/>
-
-
-          <p
-          className="text-center"
-          >
-
-          Cette démonstration ne peut pas
-          être intégrée directement.
-
-          </p>
-
-
-          <a
-
-          href={project.demoLink}
-
-          target="_blank"
-
-          rel="noopener noreferrer"
-
-          className="
-          bg-primary
-          text-white
-          px-6
-          py-3
-          rounded-lg
-          "
+            className="
+              w-full
+              h-full
+            "
 
           >
 
-          Ouvrir Argent Bank
 
-          <ExternalLink
-          className="inline ml-2"
-          size={16}
-          />
+            <iframe
 
-          </a>
+              src={project.demoLink}
 
+              title={project.title}
 
-        </div>
+              loading="lazy"
 
-        )}
-
-
-
-
-
-        {showAside && (
-
-        <section
-        className="
-        p-5
-        space-y-4
-        "
-        >
-
-          <p>
-            {project.description}
-          </p>
+              className="
+                w-full
+                h-full
+                min-h-[500px]
+                border-0
+              "
 
 
-          {project.gains && (
-
-          <ProjectGains
-          gains={project.gains}
-          />
-
-          )}
+              onError={()=>
+                setIframeError(true)
+              }
 
 
-          <p>
+              allow="
+                fullscreen;
+                autoplay
+              "
 
-          <b>Résultat :</b>{" "}
+            />
 
-          {project.results}
 
-          </p>
+          </div>
+
+
+          )
+
+        }
 
 
 
-          <a
 
-          href={project.repoLink}
 
-          target="_blank"
 
-          rel="noopener noreferrer"
 
-          className="
-          block
-          border
-          p-3
-          rounded
-          text-center
-          "
+        {
+          hasLiveDemo(project.demoLink)
+          &&
+          (!canEmbed || iframeError)
+          && (
+
+
+          <div
+
+            className="
+              min-h-[60vh]
+              flex
+              flex-col
+              justify-center
+              items-center
+              text-center
+              gap-5
+              p-6
+            "
 
           >
 
-          <Github
-          size={16}
-          className="inline mr-2"
-          />
 
-          Code source
-
-          </a>
+            <MonitorPlay size={45}/>
 
 
 
-        </section>
+            <p className="text-gray-600">
 
-        )}
+              La démonstration ne peut pas être
+              affichée directement ici.
+
+            </p>
+
+
+
+
+            <a
+
+              href={project.demoLink}
+
+              target="_blank"
+
+              rel="noopener noreferrer"
+
+              className="
+                bg-primary
+                text-white
+                px-5
+                py-3
+                rounded-lg
+                flex
+                items-center
+                gap-2
+              "
+
+            >
+
+              Ouvrir la démo
+
+              <ExternalLink size={16}/>
+
+
+            </a>
+
+
+          </div>
+
+
+          )
+
+        }
+
+
+
+
+
+
+        {
+          showInfo && (
+
+
+          <section
+
+            className="
+              p-4
+              sm:p-6
+              space-y-4
+            "
+
+          >
+
+
+            <p className="
+              text-gray-700
+              leading-relaxed
+            ">
+
+              {project.description}
+
+            </p>
+
+
+
+
+
+            {
+              project.gains && (
+
+              <ProjectGains
+                gains={project.gains}
+              />
+
+              )
+
+            }
+
+
+
+
+
+
+            <p className="text-gray-700">
+
+              <strong>
+                Résultat :
+              </strong>
+
+              {" "}
+
+              {project.results}
+
+
+            </p>
+
+
+
+
+
+
+            <a
+
+              href={project.repoLink}
+
+              target="_blank"
+
+              rel="noopener noreferrer"
+
+              className="
+                flex
+                justify-center
+                items-center
+                gap-2
+                border
+                rounded-lg
+                p-3
+              "
+
+            >
+
+              <Github size={18}/>
+
+              Code source
+
+
+            </a>
+
+
+          </section>
+
+
+          )
+
+        }
 
 
 
