@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap pour GitHub Pages
+Sitemap: https://evlecreations.github.io/sitemap.xml
