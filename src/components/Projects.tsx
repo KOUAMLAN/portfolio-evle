@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+
 import {
   ExternalLink,
   Github,
   TrendingUp,
   CheckCircle2,
   Play
-} from 'lucide-react';
+} from "lucide-react";
 
-import { PROJECTS } from '../constants';
-import { Project, hasLiveDemo } from '../types';
+import { PROJECTS } from "../constants";
+import { Project, hasLiveDemo } from "../types";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
-import ProjectGains from './ProjectGains';
-import ProjectDemoModal from './ProjectDemoModal';
-
+import ProjectGains from "./ProjectGains";
+import ProjectDemoModal from "./ProjectDemoModal";
 
 
 const FALLBACK_IMAGE =
-  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop';
+  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop";
 
 
 
@@ -31,13 +31,29 @@ const Projects: React.FC = () => {
 
 
   const openDemo = (project: Project) => {
-    setActiveProject(project);
+
+    if (hasLiveDemo(project.demoLink)) {
+
+      setActiveProject(project);
+
+    } else {
+
+      window.open(
+        project.demoLink,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+    }
+
   };
 
 
 
   const closeDemo = () => {
+
     setActiveProject(null);
+
   };
 
 
@@ -45,7 +61,9 @@ const Projects: React.FC = () => {
   const handleImageError = (
     e: React.SyntheticEvent<HTMLImageElement>
   ) => {
+
     e.currentTarget.src = FALLBACK_IMAGE;
+
   };
 
 
@@ -53,17 +71,22 @@ const Projects: React.FC = () => {
   return (
 
     <section
+
       id="projects"
+
       className="
         py-16
         sm:py-24
         bg-gray-50
         overflow-x-hidden
+        touch-manipulation
       "
+
     >
 
 
       <div
+
         className="
           max-w-7xl
           mx-auto
@@ -71,6 +94,7 @@ const Projects: React.FC = () => {
           sm:px-6
           lg:px-8
         "
+
       >
 
 
@@ -100,7 +124,9 @@ const Projects: React.FC = () => {
         >
 
 
+
           <h2
+
             className="
               text-3xl
               font-heading
@@ -108,13 +134,17 @@ const Projects: React.FC = () => {
               mb-4
               text-secondary
             "
+
           >
+
             Mes Projets
+
           </h2>
 
 
 
           <div
+
             className="
               w-20
               h-1
@@ -123,21 +153,24 @@ const Projects: React.FC = () => {
               rounded-full
               mb-6
             "
+
           />
 
 
 
           <p
+
             className="
               mt-4
               text-gray-600
               max-w-2xl
               mx-auto
             "
+
           >
 
             Projets réalisés durant ma formation et mes missions freelance.
-            Cliquez sur une carte pour consulter la démonstration directement sur le site.
+            Cliquez sur une carte pour consulter la démonstration.
 
           </p>
 
@@ -148,9 +181,8 @@ const Projects: React.FC = () => {
 
 
 
-        {/* GRILLE 2 PROJETS PAR LIGNE */}
-
         <div
+
           className="
             grid
             grid-cols-1
@@ -158,7 +190,9 @@ const Projects: React.FC = () => {
             gap-8
             w-full
           "
+
         >
+
 
 
           {PROJECTS.map((project,index)=>(
@@ -188,6 +222,7 @@ const Projects: React.FC = () => {
                 delay:index * 0.1
               }}
 
+
               className="
                 bg-white
                 rounded-xl
@@ -209,6 +244,7 @@ const Projects: React.FC = () => {
 
 
 
+
               <button
 
                 type="button"
@@ -221,29 +257,30 @@ const Projects: React.FC = () => {
                   aspect-video
                   overflow-hidden
                   bg-gray-200
-                  text-left
-                  focus:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-primary
-                  focus-visible:ring-inset
+                  cursor-pointer
+                  touch-manipulation
                 "
 
-                aria-label={`Consulter la démonstration de ${project.title}`}
+                aria-label={
+                  `Voir la démonstration de ${project.title}`
+                }
 
               >
+
 
 
                 <img
 
                   src={project.image}
 
-                  alt={`Aperçu du projet ${project.title}`}
+                  alt={
+                    `Aperçu ${project.title}`
+                  }
 
                   className="
                     w-full
                     h-full
                     object-cover
-                    block
                     transition-transform
                     duration-500
                     group-hover:scale-110
@@ -257,58 +294,68 @@ const Projects: React.FC = () => {
 
 
 
+
                 <div
+
                   className="
                     absolute
                     inset-0
                     bg-black/40
-                    group-hover:bg-black/50
-                    transition-colors
                     flex
                     items-center
                     justify-center
+                    transition-colors
                   "
+
                 >
 
+
+
                   <span
+
                     className="
                       inline-flex
                       items-center
                       gap-2
                       px-4
                       py-2.5
-                      bg-white/95
+                      bg-white
                       text-secondary
                       rounded-full
                       font-semibold
                       text-sm
                       shadow-lg
-                      transform
-                      group-hover:scale-105
-                      transition-transform
                     "
+
                   >
+
 
                     <Play
                       size={18}
                       className="text-primary fill-primary"
                     />
 
+
                     {hasLiveDemo(project.demoLink)
-                      ? 'Voir la démo'
-                      : 'Consulter le projet'
+                      ? "Voir la démo"
+                      : "Voir le projet"
                     }
 
+
                   </span>
+
 
 
                 </div>
 
 
 
+
+
                 {hasLiveDemo(project.demoLink) && (
 
                   <span
+
                     className="
                       absolute
                       top-3
@@ -321,15 +368,21 @@ const Projects: React.FC = () => {
                       font-bold
                       rounded-full
                     "
+
                   >
+
                     Démo live
+
                   </span>
 
                 )}
 
 
+
               </button>
+
                             <div
+
                 className="
                   p-4
                   sm:p-6
@@ -338,7 +391,9 @@ const Projects: React.FC = () => {
                   flex-col
                   min-w-0
                 "
+
               >
+
 
 
                 <button
@@ -349,13 +404,14 @@ const Projects: React.FC = () => {
 
                   className="
                     text-left
-                    focus:outline-none
-                    focus-visible:underline
+                    touch-manipulation
                   "
 
                 >
 
+
                   <h3
+
                     className="
                       text-xl
                       font-bold
@@ -364,6 +420,7 @@ const Projects: React.FC = () => {
                       group-hover:text-primary
                       transition-colors
                     "
+
                   >
 
                     {project.title}
@@ -378,11 +435,13 @@ const Projects: React.FC = () => {
 
 
                 <p
+
                   className="
                     text-xs
                     text-gray-400
                     mb-3
                   "
+
                 >
 
                   {project.context}
@@ -394,18 +453,22 @@ const Projects: React.FC = () => {
 
 
                 <div
+
                   className="
                     flex
                     flex-wrap
                     gap-2
                     mb-4
                   "
+
                 >
 
                   {project.tags.map((tag)=>(
 
                     <span
+
                       key={tag}
+
                       className="
                         px-2.5
                         py-0.5
@@ -414,9 +477,8 @@ const Projects: React.FC = () => {
                         text-xs
                         font-semibold
                         rounded-full
-                        border
-                        border-blue-100
                       "
+
                     >
 
                       {tag}
@@ -433,14 +495,15 @@ const Projects: React.FC = () => {
 
 
                 <p
+
                   className="
                     text-gray-600
                     mb-4
                     flex-grow
                     text-sm
                     leading-relaxed
-                    break-words
                   "
+
                 >
 
                   {project.description}
@@ -451,15 +514,16 @@ const Projects: React.FC = () => {
 
 
 
-
                 {project.gains && (
 
                   <div
+
                     className="
                       mb-4
                       hidden
                       md:block
                     "
+
                   >
 
                     <ProjectGains gains={project.gains}/>
@@ -474,39 +538,43 @@ const Projects: React.FC = () => {
 
 
                 <div
+
                   className="
                     mb-4
-                    sm:mb-6
-                    p-3
-                    sm:p-4
+                    p-4
                     bg-gray-50
                     rounded-lg
-                    text-sm
-                    space-y-3
                     border
                     border-gray-100
+                    space-y-3
                   "
+
                 >
 
 
 
                   <div className="flex gap-2 items-start">
 
+
                     <CheckCircle2
+
                       size={16}
+
                       className="
                         text-green-600
-                        mt-0.5
-                        shrink-0
+                        mt-1
                       "
+
                     />
 
 
                     <p>
 
                       <span className="font-bold text-secondary">
+
                         Objectif :
-                      </span>{' '}
+
+                      </span>{" "}
 
                       {project.objectives}
 
@@ -523,20 +591,24 @@ const Projects: React.FC = () => {
 
 
                     <CheckCircle2
+
                       size={16}
+
                       className="
                         text-primary
-                        mt-0.5
-                        shrink-0
+                        mt-1
                       "
+
                     />
 
 
                     <p>
 
                       <span className="font-bold text-secondary">
+
                         Résultat :
-                      </span>{' '}
+
+                      </span>{" "}
 
                       {project.results}
 
@@ -548,58 +620,6 @@ const Projects: React.FC = () => {
 
 
 
-
-
-                  <div
-                    className="
-                      pt-3
-                      mt-3
-                      border-t
-                      border-gray-200
-                      hidden
-                      sm:block
-                    "
-                  >
-
-
-                    <div
-                      className="
-                        flex
-                        items-center
-                        gap-2
-                        text-accent
-                        font-bold
-                        mb-1
-                      "
-                    >
-
-                      <TrendingUp size={16}/>
-
-                      <span>
-                        Perspectives d'amélioration :
-                      </span>
-
-
-                    </div>
-
-
-
-                    <p
-                      className="
-                        text-gray-600
-                        italic
-                        pl-6
-                      "
-                    >
-
-                      {project.improvements}
-
-                    </p>
-
-
-                  </div>
-
-
                 </div>
 
 
@@ -607,19 +627,22 @@ const Projects: React.FC = () => {
 
 
 
+
                 <div
+
                   className="
                     flex
                     flex-col
                     sm:flex-row
-                    gap-2
-                    sm:gap-3
+                    gap-3
                     mt-auto
                     pt-4
                     border-t
                     border-gray-100
                   "
+
                 >
+
 
 
 
@@ -631,6 +654,7 @@ const Projects: React.FC = () => {
 
                     rel="noopener noreferrer"
 
+
                     className="
                       inline-flex
                       items-center
@@ -638,16 +662,22 @@ const Projects: React.FC = () => {
                       min-h-[44px]
                       px-3
                       text-gray-600
-                      hover:text-secondary
-                      text-sm
                       font-semibold
                     "
 
                   >
 
-                    <Github size={18} className="mr-2"/>
+
+                    <Github
+
+                      size={18}
+
+                      className="mr-2"
+
+                    />
 
                     Code
+
 
                   </a>
 
@@ -658,41 +688,71 @@ const Projects: React.FC = () => {
 
                   <button
 
+
                     type="button"
+
 
                     onClick={() => openDemo(project)}
 
+
                     className="
+
                       inline-flex
+
                       items-center
+
                       justify-center
+
                       min-h-[44px]
+
                       px-4
+
                       py-2
+
                       bg-primary
+
                       text-white
+
                       rounded-lg
-                      text-sm
+
                       font-semibold
+
                       hover:bg-blue-700
+
                       transition-colors
+
                       w-full
+
                       sm:w-auto
+
                       sm:ml-auto
+
+                      touch-manipulation
+
                     "
+
 
                   >
 
+
                     {hasLiveDemo(project.demoLink)
-                      ? 'Démo interactive'
-                      : 'Voir le projet'
+
+                      ? "Démo interactive"
+
+                      : "Voir le projet"
+
                     }
 
 
+
                     <ExternalLink
+
                       size={16}
+
                       className="ml-2"
+
                     />
+
 
                   </button>
 
@@ -701,16 +761,22 @@ const Projects: React.FC = () => {
                 </div>
 
 
+
+
               </div>
+
 
 
             </motion.article>
 
 
+
           ))}
 
 
+
         </div>
+
 
 
       </div>
@@ -732,6 +798,7 @@ const Projects: React.FC = () => {
     </section>
 
   );
+
 
 };
 
