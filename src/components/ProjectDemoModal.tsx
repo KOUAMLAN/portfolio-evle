@@ -1,177 +1,82 @@
-import React, {
-  useEffect,
-  useRef,
-  useState
-} from "react";
-
-import {
-  X,
-  ExternalLink,
-  Github,
-  MonitorPlay
-} from "lucide-react";
-
-import {
-  motion,
-  AnimatePresence
-} from "framer-motion";
-
-import {
-  Project,
-  hasLiveDemo
-} from "../types";
-
-import ProjectGains from "./ProjectGains";
-
-import { useMediaQuery } from "../hooks/useMediaQuery";
+import React, { useEffect } from "react";
+import { X, ExternalLink } from "lucide-react";
+import { Project } from "../types";
 
 
 interface ProjectDemoModalProps {
+
   project: Project | null;
+
   onClose: () => void;
+
 }
-
-
-type MobileTab = "demo" | "info";
 
 
 
 const ProjectDemoModal: React.FC<ProjectDemoModalProps> = ({
+
   project,
+
   onClose
+
 }) => {
 
 
-  const closeButtonRef =
-    useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+
+
+    if (!project) return;
 
 
 
-  const isMobile =
-    useMediaQuery("(max-width:768px)");
+    const handleEscape = (event: KeyboardEvent) => {
 
+      if (event.key === "Escape") {
 
+        onClose();
 
-  const isSmallMobile =
-    useMediaQuery("(max-width:475px)");
-
-
-
-  const [mobileTab,setMobileTab] =
-    useState<MobileTab>("info");
-
-
-
-  const [iframeError,setIframeError] =
-    useState(false);
-
-
-
-  // CORRECTION ICI
-  const canEmbed =
-    Boolean(
-      project?.embedDemo &&
-      project.demoLink
-    );
-
-
-
-  useEffect(()=>{
-
-
-    if(!project) return;
-
-
-
-    setIframeError(false);
-
-
-
-    setMobileTab(
-      isSmallMobile
-      ? "info"
-      : "demo"
-    );
-
-
-
-    const previousOverflow =
-      document.body.style.overflow;
-
-
-
-    document.body.style.overflow =
-      "hidden";
-
-
-
-    const escapeHandler =
-      (event:KeyboardEvent)=>{
-
-        if(event.key==="Escape"){
-          onClose();
-        }
-
-      };
-
-
-
-    window.addEventListener(
-      "keydown",
-      escapeHandler
-    );
-
-
-
-    closeButtonRef.current?.focus();
-
-
-
-    return ()=>{
-
-      document.body.style.overflow =
-        previousOverflow;
-
-
-      window.removeEventListener(
-        "keydown",
-        escapeHandler
-      );
+      }
 
     };
 
 
-  },[
-    project,
-    onClose,
-    isSmallMobile
-  ]);
 
-
-
-
-
-  if(!project)
-    return null;
-
-
-
-
-
-  const showDemo =
-    canEmbed &&
-    !iframeError &&
-    (
-      !isMobile ||
-      mobileTab==="demo"
+    document.addEventListener(
+      "keydown",
+      handleEscape
     );
 
 
 
-  const showInfo =
-    !isMobile ||
-    isSmallMobile ||
-    mobileTab==="info";
+    document.body.style.overflow = "hidden";
+
+
+
+    return () => {
+
+      document.removeEventListener(
+        "keydown",
+        handleEscape
+      );
+
+
+      document.body.style.overflow = "";
+
+    };
+
+
+  }, [project, onClose]);
+
+
+
+
+
+  if (!project) {
+
+    return null;
+
+  }
 
 
 
@@ -179,37 +84,42 @@ const ProjectDemoModal: React.FC<ProjectDemoModalProps> = ({
 
   return (
 
-    <AnimatePresence>
+    <div
+
+      className="
+        fixed
+        inset-0
+        z-[9999]
+        flex
+        items-center
+        justify-center
+        p-4
+      "
+
+      role="dialog"
+
+      aria-modal="true"
+
+    >
 
 
 
-      <motion.div
+      {/* Fond */}
 
-        className="
-          fixed
-          inset-0
-          bg-black/60
-          backdrop-blur-sm
-          z-[100]
-        "
+      <button
 
-
-        initial={{
-          opacity:0
-        }}
-
-
-        animate={{
-          opacity:1
-        }}
-
-
-        exit={{
-          opacity:0
-        }}
-
+        type="button"
 
         onClick={onClose}
+
+        className="
+          absolute
+          inset-0
+          bg-black/70
+          cursor-default
+        "
+
+        aria-label="Fermer la fenêtre"
 
       />
 
@@ -217,173 +127,80 @@ const ProjectDemoModal: React.FC<ProjectDemoModalProps> = ({
 
 
 
-      <motion.div
+      {/* Modal */}
 
-
-        role="dialog"
-
-        aria-modal="true"
-
+      <div
 
         className="
-          fixed
-          inset-2
-          sm:inset-4
-          md:inset-8
-          z-[101]
+          relative
+          z-10
+          w-full
+          max-w-5xl
+          max-h-[90vh]
+          overflow-y-auto
           bg-white
           rounded-xl
           shadow-2xl
-          overflow-hidden
-          flex
-          flex-col
-          max-w-7xl
-          mx-auto
+          p-5
+          sm:p-8
         "
-
-
-
-        initial={{
-          opacity:0,
-          scale:0.95
-        }}
-
-
-        animate={{
-          opacity:1,
-          scale:1
-        }}
-
-
-        exit={{
-          opacity:0
-        }}
 
       >
 
 
 
+        <button
 
+          type="button"
 
-        <header
+          onClick={onClose}
 
           className="
+            absolute
+            top-4
+            right-4
+            w-10
+            h-10
+            rounded-full
             flex
             items-center
-            justify-between
-            gap-3
-            px-3
-            sm:px-5
-            py-3
-            border-b
-            bg-gray-50
+            justify-center
+            bg-gray-100
+            hover:bg-gray-200
+            transition
+            z-20
+          "
+
+          aria-label="Fermer"
+
+        >
+
+          <X size={22}/>
+
+        </button>
+
+
+
+
+
+
+        <h2
+
+          className="
+            text-2xl
+            sm:text-3xl
+            font-bold
+            text-secondary
+            mb-4
+            pr-10
           "
 
         >
 
+          {project.title}
 
-          <h2
+        </h2>
 
-            className="
-              text-sm
-              sm:text-lg
-              font-bold
-              truncate
-            "
-
-          >
-
-            {project.title}
-
-          </h2>
-
-
-
-
-          <button
-
-            ref={closeButtonRef}
-
-            onClick={onClose}
-
-            className="
-              p-2
-              rounded-lg
-              hover:bg-gray-200
-            "
-
-          >
-
-            <X size={22}/>
-
-          </button>
-
-
-        </header>
-
-
-
-
-
-
-        {
-          isMobile &&
-          canEmbed &&
-          !isSmallMobile && (
-
-
-          <div className="
-            flex
-            border-b
-          ">
-
-
-            <button
-
-              onClick={()=>
-                setMobileTab("demo")
-              }
-
-              className="
-                flex-1
-                py-3
-                text-sm
-                font-semibold
-              "
-
-            >
-
-              Démo
-
-            </button>
-
-
-
-
-            <button
-
-              onClick={()=>
-                setMobileTab("info")
-              }
-
-              className="
-                flex-1
-                py-3
-                text-sm
-                font-semibold
-              "
-
-            >
-
-              Informations
-
-            </button>
-
-
-          </div>
-
-
-        )}
 
 
 
@@ -392,246 +209,112 @@ const ProjectDemoModal: React.FC<ProjectDemoModalProps> = ({
         <div
 
           className="
-            flex-1
-            overflow-auto
+            aspect-video
+            rounded-lg
+            overflow-hidden
+            bg-gray-100
+            mb-6
+          "
+
+        >
+
+
+          <iframe
+
+            src={project.demoLink}
+
+            title={`Démonstration ${project.title}`}
+
+            className="
+              w-full
+              h-full
+              border-0
+            "
+
+            loading="lazy"
+
+            allowFullScreen
+
+          />
+
+
+        </div>
+
+
+
+
+
+
+
+        <div
+
+          className="
+            flex
+            flex-col
+            sm:flex-row
+            gap-3
           "
 
         >
 
 
 
+          <a
 
+            href={project.demoLink}
 
-        {
-          showDemo && (
+            target="_blank"
 
-
-          <div
-
-            className="
-              w-full
-              h-full
-            "
-
-          >
-
-
-            <iframe
-
-              src={project.demoLink}
-
-              title={project.title}
-
-              loading="lazy"
-
-              className="
-                w-full
-                h-full
-                min-h-[500px]
-                border-0
-              "
-
-
-              onError={()=>
-                setIframeError(true)
-              }
-
-
-              allow="
-                fullscreen;
-                autoplay
-              "
-
-            />
-
-
-          </div>
-
-
-          )
-
-        }
-
-
-
-
-
-
-
-        {
-          hasLiveDemo(project.demoLink)
-          &&
-          (!canEmbed || iframeError)
-          && (
-
-
-          <div
+            rel="noopener noreferrer"
 
             className="
-              min-h-[60vh]
               flex
-              flex-col
-              justify-center
               items-center
-              text-center
-              gap-5
-              p-6
+              justify-center
+              gap-2
+              px-5
+              py-3
+              bg-primary
+              text-white
+              rounded-lg
+              font-semibold
+              hover:bg-blue-700
+              transition
             "
 
           >
 
+            Ouvrir la démo
 
-            <MonitorPlay size={45}/>
+            <ExternalLink size={18}/>
 
 
-
-            <p className="text-gray-600">
-
-              La démonstration ne peut pas être
-              affichée directement ici.
-
-            </p>
+          </a>
 
 
 
+          <button
 
-            <a
+            type="button"
 
-              href={project.demoLink}
-
-              target="_blank"
-
-              rel="noopener noreferrer"
-
-              className="
-                bg-primary
-                text-white
-                px-5
-                py-3
-                rounded-lg
-                flex
-                items-center
-                gap-2
-              "
-
-            >
-
-              Ouvrir la démo
-
-              <ExternalLink size={16}/>
-
-
-            </a>
-
-
-          </div>
-
-
-          )
-
-        }
-
-
-
-
-
-
-        {
-          showInfo && (
-
-
-          <section
+            onClick={onClose}
 
             className="
-              p-4
-              sm:p-6
-              space-y-4
+              px-5
+              py-3
+              rounded-lg
+              border
+              border-gray-300
+              font-semibold
+              hover:bg-gray-100
+              transition
             "
 
           >
 
+            Fermer
 
-            <p className="
-              text-gray-700
-              leading-relaxed
-            ">
-
-              {project.description}
-
-            </p>
-
-
-
-
-
-            {
-              project.gains && (
-
-              <ProjectGains
-                gains={project.gains}
-              />
-
-              )
-
-            }
-
-
-
-
-
-
-            <p className="text-gray-700">
-
-              <strong>
-                Résultat :
-              </strong>
-
-              {" "}
-
-              {project.results}
-
-
-            </p>
-
-
-
-
-
-
-            <a
-
-              href={project.repoLink}
-
-              target="_blank"
-
-              rel="noopener noreferrer"
-
-              className="
-                flex
-                justify-center
-                items-center
-                gap-2
-                border
-                rounded-lg
-                p-3
-              "
-
-            >
-
-              <Github size={18}/>
-
-              Code source
-
-
-            </a>
-
-
-          </section>
-
-
-          )
-
-        }
+          </button>
 
 
 
@@ -639,15 +322,16 @@ const ProjectDemoModal: React.FC<ProjectDemoModalProps> = ({
 
 
 
-      </motion.div>
+      </div>
 
 
 
-    </AnimatePresence>
+    </div>
 
   );
 
 };
+
 
 
 export default ProjectDemoModal;

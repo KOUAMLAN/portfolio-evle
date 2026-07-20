@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import {
   ExternalLink,
   Github,
-  TrendingUp,
   CheckCircle2,
   Play
 } from "lucide-react";
@@ -21,13 +20,10 @@ const FALLBACK_IMAGE =
   "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop";
 
 
-
 const Projects: React.FC = () => {
-
 
   const [activeProject, setActiveProject] =
     useState<Project | null>(null);
-
 
 
   const openDemo = (project: Project) => {
@@ -49,13 +45,11 @@ const Projects: React.FC = () => {
   };
 
 
-
   const closeDemo = () => {
 
     setActiveProject(null);
 
   };
-
 
 
   const handleImageError = (
@@ -67,13 +61,10 @@ const Projects: React.FC = () => {
   };
 
 
-
   return (
 
     <section
-
       id="projects"
-
       className="
         py-16
         sm:py-24
@@ -81,12 +72,9 @@ const Projects: React.FC = () => {
         overflow-x-hidden
         touch-manipulation
       "
-
     >
 
-
       <div
-
         className="
           max-w-7xl
           mx-auto
@@ -94,10 +82,7 @@ const Projects: React.FC = () => {
           sm:px-6
           lg:px-8
         "
-
       >
-
-
 
         <motion.div
 
@@ -120,13 +105,9 @@ const Projects: React.FC = () => {
             text-center
             mb-16
           "
-
         >
 
-
-
           <h2
-
             className="
               text-3xl
               font-heading
@@ -134,17 +115,12 @@ const Projects: React.FC = () => {
               mb-4
               text-secondary
             "
-
           >
-
             Mes Projets
-
           </h2>
 
 
-
           <div
-
             className="
               w-20
               h-1
@@ -153,36 +129,26 @@ const Projects: React.FC = () => {
               rounded-full
               mb-6
             "
-
           />
 
 
-
           <p
-
             className="
               mt-4
               text-gray-600
               max-w-2xl
               mx-auto
             "
-
           >
-
             Projets réalisés durant ma formation et mes missions freelance.
             Cliquez sur une carte pour consulter la démonstration.
-
           </p>
-
 
         </motion.div>
 
 
 
-
-
         <div
-
           className="
             grid
             grid-cols-1
@@ -190,13 +156,10 @@ const Projects: React.FC = () => {
             gap-8
             w-full
           "
-
         >
 
 
-
           {PROJECTS.map((project,index)=>(
-
 
 
             <motion.article
@@ -222,7 +185,6 @@ const Projects: React.FC = () => {
                 delay:index * 0.1
               }}
 
-
               className="
                 bg-white
                 rounded-xl
@@ -239,10 +201,7 @@ const Projects: React.FC = () => {
                 group
                 min-w-0
               "
-
             >
-
-
 
 
               <button
@@ -253,6 +212,7 @@ const Projects: React.FC = () => {
 
                 className="
                   relative
+                  z-10
                   w-full
                   aspect-video
                   overflow-hidden
@@ -261,21 +221,14 @@ const Projects: React.FC = () => {
                   touch-manipulation
                 "
 
-                aria-label={
-                  `Voir la démonstration de ${project.title}`
-                }
-
+                aria-label={`Voir la démonstration de ${project.title}`}
               >
-
-
 
                 <img
 
                   src={project.image}
 
-                  alt={
-                    `Aperçu ${project.title}`
-                  }
+                  alt={`Aperçu ${project.title}`}
 
                   className="
                     w-full
@@ -293,8 +246,6 @@ const Projects: React.FC = () => {
                 />
 
 
-
-
                 <div
 
                   className="
@@ -305,11 +256,9 @@ const Projects: React.FC = () => {
                     items-center
                     justify-center
                     transition-colors
+                    pointer-events-none
                   "
-
                 >
-
-
 
                   <span
 
@@ -326,30 +275,21 @@ const Projects: React.FC = () => {
                       text-sm
                       shadow-lg
                     "
-
                   >
-
 
                     <Play
                       size={18}
                       className="text-primary fill-primary"
                     />
 
-
                     {hasLiveDemo(project.demoLink)
                       ? "Voir la démo"
                       : "Voir le projet"
                     }
 
-
                   </span>
 
-
-
                 </div>
-
-
-
 
 
                 {hasLiveDemo(project.demoLink) && (
@@ -368,16 +308,11 @@ const Projects: React.FC = () => {
                       font-bold
                       rounded-full
                     "
-
                   >
-
                     Démo live
-
                   </span>
 
                 )}
-
-
 
               </button>
 
@@ -395,7 +330,6 @@ const Projects: React.FC = () => {
               >
 
 
-
                 <button
 
                   type="button"
@@ -408,7 +342,6 @@ const Projects: React.FC = () => {
                   "
 
                 >
-
 
                   <h3
 
@@ -427,10 +360,7 @@ const Projects: React.FC = () => {
 
                   </h3>
 
-
                 </button>
-
-
 
 
 
@@ -447,7 +377,6 @@ const Projects: React.FC = () => {
                   {project.context}
 
                 </p>
-
 
 
 
@@ -486,7 +415,6 @@ const Projects: React.FC = () => {
                     </span>
 
                   ))}
-
 
                 </div>
 
@@ -552,7 +480,6 @@ const Projects: React.FC = () => {
                 >
 
 
-
                   <div className="flex gap-2 items-start">
 
 
@@ -571,9 +498,7 @@ const Projects: React.FC = () => {
                     <p>
 
                       <span className="font-bold text-secondary">
-
                         Objectif :
-
                       </span>{" "}
 
                       {project.objectives}
@@ -605,9 +530,7 @@ const Projects: React.FC = () => {
                     <p>
 
                       <span className="font-bold text-secondary">
-
                         Résultat :
-
                       </span>{" "}
 
                       {project.results}
@@ -618,10 +541,7 @@ const Projects: React.FC = () => {
                   </div>
 
 
-
-
                 </div>
-
 
 
 
@@ -646,6 +566,7 @@ const Projects: React.FC = () => {
 
 
 
+
                   <a
 
                     href={project.repoLink}
@@ -653,7 +574,6 @@ const Projects: React.FC = () => {
                     target="_blank"
 
                     rel="noopener noreferrer"
-
 
                     className="
                       inline-flex
@@ -666,7 +586,6 @@ const Projects: React.FC = () => {
                     "
 
                   >
-
 
                     <Github
 
@@ -686,63 +605,38 @@ const Projects: React.FC = () => {
 
 
 
-                  <button
 
+                  <button
 
                     type="button"
 
-
                     onClick={() => openDemo(project)}
 
-
                     className="
-
                       inline-flex
-
                       items-center
-
                       justify-center
-
                       min-h-[44px]
-
                       px-4
-
                       py-2
-
                       bg-primary
-
                       text-white
-
                       rounded-lg
-
                       font-semibold
-
                       hover:bg-blue-700
-
                       transition-colors
-
                       w-full
-
                       sm:w-auto
-
                       sm:ml-auto
-
                       touch-manipulation
-
                     "
-
 
                   >
 
-
                     {hasLiveDemo(project.demoLink)
-
                       ? "Démo interactive"
-
                       : "Voir le projet"
-
                     }
-
 
 
                     <ExternalLink
@@ -753,7 +647,6 @@ const Projects: React.FC = () => {
 
                     />
 
-
                   </button>
 
 
@@ -762,13 +655,11 @@ const Projects: React.FC = () => {
 
 
 
-
               </div>
 
 
 
             </motion.article>
-
 
 
           ))}
