@@ -1,4 +1,4 @@
-import{j as n,m as t,a as i}from"./index-Bk4cjUhU.js";const o=()=>{const a=i.email?.trim()||"",r=a?`mailto:${a}`:"#";return n.jsxs("section",{id:"contact",className:`
+import{j as n,m as t,a as i}from"./index-KALOo5U-.js";const o=()=>{const a=i.email?.trim()||"",r=a?`mailto:${a}`:"#";return n.jsxs("section",{id:"contact",className:`
         py-24
         bg-secondary
         text-white
