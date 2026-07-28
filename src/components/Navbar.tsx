@@ -1,50 +1,132 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
+
 const Navbar: React.FC = () => {
+
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+
+
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
 
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
 
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    window.addEventListener(
+      "scroll",
+      handleScroll
+    );
+
+
+    return () => {
+      window.removeEventListener(
+        "scroll",
+        handleScroll
+      );
+    };
+
   }, []);
 
 
+
+
   const navLinks = [
-    { name: "Accueil", href: "#hero" },
-    { name: "À propos", href: "#about" },
-    { name: "Compétences", href: "#skills" },
-    { name: "Projets", href: "#projects" },
-    { name: "Contact", href: "#contact" },
+    {
+      name:"Accueil",
+      href:"#hero"
+    },
+    {
+      name:"À propos",
+      href:"#about"
+    },
+    {
+      name:"Compétences",
+      href:"#skills"
+    },
+    {
+      name:"Projets",
+      href:"#projects"
+    },
+    {
+      name:"Contact",
+      href:"#contact"
+    }
   ];
 
 
+
+
   return (
+
     <header
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm py-2 sm:py-3"
-          : "bg-white/80 backdrop-blur-sm py-3 sm:py-5"
-      }`}
+
+      className={`
+        fixed
+        w-full
+        z-50
+        transition-all
+        duration-300
+        ${
+          scrolled
+            ? "bg-white/95 backdrop-blur-md shadow-sm py-2 sm:py-3"
+            : "bg-white/80 backdrop-blur-sm py-3 sm:py-5"
+        }
+      `}
+
     >
 
-      <nav className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 w-full box-border">
-
-        <div className="flex justify-between items-center gap-2 min-w-0">
 
 
-          {/* LOGO EC CONSERVÉ */}
+      <nav
+        className="
+          max-w-7xl
+          mx-auto
+          px-3
+          sm:px-6
+          lg:px-8
+          w-full
+          box-border
+        "
+      >
+
+
+
+        <div
+          className="
+            flex
+            justify-between
+            items-center
+            gap-2
+            min-w-0
+          "
+        >
+
+
+
+          {/* LOGO */}
+
           <a
+
             href="#hero"
-            className="flex items-center gap-2 hover:opacity-90 transition-opacity"
+
+            className="
+              flex
+              items-center
+              gap-2
+              hover:opacity-90
+              transition-opacity
+            "
+
             aria-label="Retour à l'accueil"
+
           >
 
             <span
+
               className="
                 w-9
                 h-9
@@ -52,7 +134,7 @@ const Navbar: React.FC = () => {
                 sm:h-10
                 shrink-0
                 rounded-lg
-                bg-accent
+                bg-blue-700
                 text-white
                 font-heading
                 font-extrabold
@@ -63,25 +145,44 @@ const Navbar: React.FC = () => {
                 justify-center
                 shadow-md
               "
+
             >
+
               EC
+
             </span>
 
-
-            {/* Evle.dev SUPPRIMÉ */}
 
           </a>
 
 
 
-          {/* MENU DESKTOP */}
-          <div className="hidden md:flex space-x-8 items-center">
 
-            {navLinks.map((link) => (
+
+
+          {/* MENU DESKTOP */}
+
+          <div
+
+            className="
+              hidden
+              md:flex
+              space-x-8
+              items-center
+            "
+
+          >
+
+
+            {navLinks.map((link)=>(
+
 
               <a
+
                 key={link.name}
+
                 href={link.href}
+
                 className="
                   text-secondary
                   hover:text-primary
@@ -91,21 +192,44 @@ const Navbar: React.FC = () => {
                   tracking-wide
                   transition-colors
                 "
+
               >
+
                 {link.name}
+
               </a>
 
+
             ))}
+
 
           </div>
 
 
 
+
+
+
+
           {/* MENU MOBILE */}
-          <div className="md:hidden flex items-center shrink-0">
+
+          <div
+
+            className="
+              md:hidden
+              flex
+              items-center
+              shrink-0
+            "
+
+          >
+
+
 
             <button
+
               onClick={() => setIsOpen(!isOpen)}
+
               className="
                 text-secondary
                 hover:text-primary
@@ -116,33 +240,55 @@ const Navbar: React.FC = () => {
                 items-center
                 justify-center
               "
+
               aria-label={
                 isOpen
-                  ? "Fermer le menu"
-                  : "Ouvrir le menu"
+                  ? "Fermer le menu de navigation"
+                  : "Ouvrir le menu de navigation"
               }
+
+              aria-expanded={isOpen}
+
             >
 
+
               {isOpen ? (
-                <X size={24} />
+
+                <X size={24}/>
+
               ) : (
-                <Menu size={24} />
+
+                <Menu size={24}/>
+
               )}
 
+
             </button>
+
 
           </div>
 
 
+
+
         </div>
+
 
       </nav>
 
 
 
+
+
+
+
+      {/* MENU MOBILE OUVERT */}
+
       {isOpen && (
 
+
         <div
+
           className="
             md:hidden
             bg-white
@@ -152,9 +298,13 @@ const Navbar: React.FC = () => {
             w-full
             shadow-lg
           "
+
         >
 
+
+
           <div
+
             className="
               px-3
               py-3
@@ -162,14 +312,22 @@ const Navbar: React.FC = () => {
               flex
               flex-col
             "
+
           >
 
-            {navLinks.map((link) => (
+
+
+            {navLinks.map((link)=>(
+
 
               <a
+
                 key={link.name}
+
                 href={link.href}
+
                 onClick={() => setIsOpen(false)}
+
                 className="
                   block
                   px-4
@@ -182,20 +340,31 @@ const Navbar: React.FC = () => {
                   font-medium
                   min-h-[44px]
                 "
+
               >
+
                 {link.name}
+
               </a>
+
 
             ))}
 
+
           </div>
+
 
         </div>
 
+
       )}
 
+
+
     </header>
+
   );
+
 };
 
 

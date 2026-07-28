@@ -1,67 +1,86 @@
+import React from "react";
 
-import React from 'react';
 import {
   Gauge,
   Eye,
   MousePointerClick,
   Search,
   Smartphone
-} from 'lucide-react';
+} from "lucide-react";
 
-import { ProjectGains as Gains } from '../types';
+
+import {
+  ProjectGains as Gains
+} from "../types";
+
 
 
 interface ProjectGainsProps {
+
   gains:Gains;
+
 }
+
 
 
 const METRIC_CONFIG = [
 
-  {
-    key:'speed' as const,
-    label:'Rapidité',
-    icon:Gauge,
-    color:'text-blue-600 bg-blue-50 border-blue-100'
-  },
 
-  {
-    key:'visibility' as const,
-    label:'Visibilité',
-    icon:Eye,
-    color:'text-purple-600 bg-purple-50 border-purple-100'
-  },
+{
+ key:"speed" as const,
+ label:"Performance",
+ icon:Gauge,
+ color:"text-blue-700 bg-blue-50 border-blue-200"
+},
 
-  {
-    key:'ergonomics' as const,
-    label:'Ergonomie',
-    icon:MousePointerClick,
-    color:'text-green-600 bg-green-50 border-green-100'
-  },
 
-  {
-    key:'seo' as const,
-    label:'Référencement',
-    icon:Search,
-    color:'text-amber-600 bg-amber-50 border-amber-100'
-  },
+{
+ key:"visibility" as const,
+ label:"Visibilité",
+ icon:Eye,
+ color:"text-purple-700 bg-purple-50 border-purple-200"
+},
 
-  {
-    key:'mobile' as const,
-    label:'Mobile',
-    icon:Smartphone,
-    color:'text-rose-600 bg-rose-50 border-rose-100'
-  }
+
+{
+ key:"ergonomics" as const,
+ label:"Expérience utilisateur",
+ icon:MousePointerClick,
+ color:"text-green-700 bg-green-50 border-green-200"
+},
+
+
+{
+ key:"seo" as const,
+ label:"SEO",
+ icon:Search,
+ color:"text-orange-700 bg-orange-50 border-orange-200"
+},
+
+
+{
+ key:"mobile" as const,
+ label:"Mobile",
+ icon:Smartphone,
+ color:"text-pink-700 bg-pink-50 border-pink-200"
+}
+
+
 
 ];
 
 
-const ProjectGains:React.FC<ProjectGainsProps> = ({gains})=>{
+
+
+
+const ProjectGains:React.FC<ProjectGainsProps> = ({
+ gains
+})=>{
 
 
 const activeMetrics =
 METRIC_CONFIG.filter(
-({key})=>gains[key]
+(item)=>gains[item.key]
 );
 
 
@@ -71,28 +90,37 @@ return null;
 
 
 
+
 return (
 
-<div className="space-y-2">
+<div className="space-y-3">
 
 
-<p className="
+<p
+className="
 text-xs
 font-bold
 uppercase
 tracking-wide
 text-secondary
-">
-Améliorations obtenues
+"
+>
+
+Améliorations réalisées
+
 </p>
 
 
-<div className="
+
+
+<div
+className="
 grid
 grid-cols-1
 sm:grid-cols-2
 gap-2
-">
+"
+>
 
 
 {
@@ -106,34 +134,37 @@ color
 
 
 <div
+
 key={key}
+
 className={`
-flex
-items-start
-gap-2
-p-2.5
-rounded-lg
 border
+rounded-lg
+p-3
+flex
+gap-2
 text-xs
 ${color}
 `}
+
 >
 
 
 <Icon
-size={14}
-className="mt-0.5 shrink-0"
+size={16}
+className="shrink-0 mt-0.5"
 />
+
 
 
 <div>
 
-<span className="font-bold block">
+<strong className="block">
 {label}
-</span>
+</strong>
 
 
-<span className="leading-snug">
+<span>
 {gains[key]}
 </span>
 
@@ -144,17 +175,23 @@ className="mt-0.5 shrink-0"
 </div>
 
 
-))
+)
+
+)
+
 
 }
 
 
+
 </div>
 
 
 </div>
+
 
 );
+
 
 };
 

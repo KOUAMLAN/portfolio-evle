@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, {
+  useState
+} from "react";
+
 
 import {
   ExternalLink,
@@ -7,688 +10,907 @@ import {
   Play
 } from "lucide-react";
 
-import { PROJECTS } from "../constants";
-import { Project, hasLiveDemo } from "../types";
 
-import { motion } from "framer-motion";
+import {
+  motion
+} from "framer-motion";
+
+
+import {
+  PROJECTS
+} from "../constants";
+
+
+import {
+  Project,
+  hasLiveDemo
+} from "../types";
+
 
 import ProjectGains from "./ProjectGains";
+
 import ProjectDemoModal from "./ProjectDemoModal";
 
 
+
+
+
 const FALLBACK_IMAGE =
-  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop";
+"https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=70&auto=format&fit=crop";
 
 
-const Projects: React.FC = () => {
 
-  const [activeProject, setActiveProject] =
-    useState<Project | null>(null);
 
 
-  const openDemo = (project: Project) => {
+const Projects:React.FC = ()=>{
 
-    if (hasLiveDemo(project.demoLink)) {
 
-      setActiveProject(project);
+const [
+ activeProject,
+ setActiveProject
+]
+=
+useState<Project|null>(null);
 
-    } else {
 
-      window.open(
-        project.demoLink,
-        "_blank",
-        "noopener,noreferrer"
-      );
 
-    }
 
-  };
 
+const openDemo=(project:Project)=>{
 
-  const closeDemo = () => {
 
-    setActiveProject(null);
+if(hasLiveDemo(project.demoLink)){
 
-  };
+setActiveProject(project);
 
+}
 
-  const handleImageError = (
-    e: React.SyntheticEvent<HTMLImageElement>
-  ) => {
+else{
 
-    e.currentTarget.src = FALLBACK_IMAGE;
 
-  };
+window.open(
+project.demoLink,
+"_blank",
+"noopener,noreferrer"
+);
 
 
-  return (
+}
 
-    <section
-      id="projects"
-      className="
-        py-16
-        sm:py-24
-        bg-gray-50
-        overflow-x-hidden
-        touch-manipulation
-      "
-    >
 
-      <div
-        className="
-          max-w-7xl
-          mx-auto
-          px-4
-          sm:px-6
-          lg:px-8
-        "
-      >
+};
 
-        <motion.div
 
-          initial={{
-            opacity:0,
-            y:20
-          }}
 
-          whileInView={{
-            opacity:1,
-            y:0
-          }}
 
-          viewport={{
-            once:true,
-            amount:0.2
-          }}
 
-          className="
-            text-center
-            mb-16
-          "
-        >
+const closeDemo=()=>{
 
-          <h2
-            className="
-              text-3xl
-              font-heading
-              font-bold
-              mb-4
-              text-secondary
-            "
-          >
-            Mes Projets
-          </h2>
-
-
-          <div
-            className="
-              w-20
-              h-1
-              bg-primary
-              mx-auto
-              rounded-full
-              mb-6
-            "
-          />
-
-
-          <p
-            className="
-              mt-4
-              text-gray-600
-              max-w-2xl
-              mx-auto
-            "
-          >
-            Projets réalisés durant ma formation et mes missions freelance.
-            Cliquez sur une carte pour consulter la démonstration.
-          </p>
-
-        </motion.div>
+setActiveProject(null);
 
+};
 
 
-        <div
-          className="
-            grid
-            grid-cols-1
-            md:grid-cols-2
-            gap-8
-            w-full
-          "
-        >
-
-
-          {PROJECTS.map((project,index)=>(
-
-
-            <motion.article
-
-              key={project.id}
-
-              initial={{
-                opacity:0,
-                y:30
-              }}
-
-              whileInView={{
-                opacity:1,
-                y:0
-              }}
-
-              viewport={{
-                once:true,
-                amount:0.2
-              }}
-
-              transition={{
-                delay:index * 0.1
-              }}
-
-              className="
-                bg-white
-                rounded-xl
-                overflow-hidden
-                shadow-lg
-                border
-                border-gray-100
-                hover:shadow-2xl
-                transition-all
-                duration-300
-                flex
-                flex-col
-                h-full
-                group
-                min-w-0
-              "
-            >
-
-
-              <button
-
-                type="button"
-
-                onClick={() => openDemo(project)}
-
-                className="
-                  relative
-                  z-10
-                  w-full
-                  aspect-video
-                  overflow-hidden
-                  bg-gray-200
-                  cursor-pointer
-                  touch-manipulation
-                "
-
-                aria-label={`Voir la démonstration de ${project.title}`}
-              >
-
-                <img
-
-                  src={project.image}
-
-                  alt={`Aperçu ${project.title}`}
-
-                  className="
-                    w-full
-                    h-full
-                    object-cover
-                    transition-transform
-                    duration-500
-                    group-hover:scale-110
-                  "
-
-                  loading="lazy"
-
-                  onError={handleImageError}
-
-                />
-
 
-                <div
-
-                  className="
-                    absolute
-                    inset-0
-                    bg-black/40
-                    flex
-                    items-center
-                    justify-center
-                    transition-colors
-                    pointer-events-none
-                  "
-                >
-
-                  <span
 
-                    className="
-                      inline-flex
-                      items-center
-                      gap-2
-                      px-4
-                      py-2.5
-                      bg-white
-                      text-secondary
-                      rounded-full
-                      font-semibold
-                      text-sm
-                      shadow-lg
-                    "
-                  >
 
-                    <Play
-                      size={18}
-                      className="text-primary fill-primary"
-                    />
 
-                    {hasLiveDemo(project.demoLink)
-                      ? "Voir la démo"
-                      : "Voir le projet"
-                    }
+const handleImageError=(
+e:React.SyntheticEvent<HTMLImageElement>
+)=>{
 
-                  </span>
+e.currentTarget.src = FALLBACK_IMAGE;
 
-                </div>
+};
 
 
-                {hasLiveDemo(project.demoLink) && (
 
-                  <span
 
-                    className="
-                      absolute
-                      top-3
-                      right-3
-                      px-2.5
-                      py-1
-                      bg-green-500
-                      text-white
-                      text-xs
-                      font-bold
-                      rounded-full
-                    "
-                  >
-                    Démo live
-                  </span>
 
-                )}
 
-              </button>
 
-                            <div
+return (
 
-                className="
-                  p-4
-                  sm:p-6
-                  flex-1
-                  flex
-                  flex-col
-                  min-w-0
-                "
+<section
 
-              >
+id="projects"
 
+className="
+py-16
+sm:py-24
+bg-gray-50
+overflow-hidden
+"
 
-                <button
+>
 
-                  type="button"
 
-                  onClick={() => openDemo(project)}
+<div
 
-                  className="
-                    text-left
-                    touch-manipulation
-                  "
+className="
+max-w-7xl
+mx-auto
+px-4
+sm:px-6
+lg:px-8
+"
 
-                >
+>
 
-                  <h3
 
-                    className="
-                      text-xl
-                      font-bold
-                      mb-1
-                      text-secondary
-                      group-hover:text-primary
-                      transition-colors
-                    "
 
-                  >
+<motion.div
 
-                    {project.title}
 
-                  </h3>
+initial={{
+opacity:0,
+y:20
+}}
 
-                </button>
 
+whileInView={{
+opacity:1,
+y:0
+}}
 
 
-                <p
+viewport={{
+once:true
+}}
 
-                  className="
-                    text-xs
-                    text-gray-400
-                    mb-3
-                  "
 
-                >
+className="
+text-center
+mb-16
+"
 
-                  {project.context}
+>
 
-                </p>
 
+<h2
 
+className="
+text-3xl
+font-heading
+font-bold
+text-secondary
+mb-4
+"
 
+>
 
-                <div
+Mes Projets
 
-                  className="
-                    flex
-                    flex-wrap
-                    gap-2
-                    mb-4
-                  "
+</h2>
 
-                >
 
-                  {project.tags.map((tag)=>(
 
-                    <span
 
-                      key={tag}
+<div
 
-                      className="
-                        px-2.5
-                        py-0.5
-                        bg-blue-50
-                        text-blue-700
-                        text-xs
-                        font-semibold
-                        rounded-full
-                      "
+className="
+w-20
+h-1
+bg-primary
+mx-auto
+rounded-full
+mb-6
+"
 
-                    >
+/>
 
-                      {tag}
 
-                    </span>
 
-                  ))}
 
-                </div>
+<p
 
+className="
+text-gray-600
+max-w-2xl
+mx-auto
+"
 
+>
 
+Projets React, applications web et interfaces modernes conçus avec
+performance, accessibilité et expérience utilisateur.
 
+</p>
 
-                <p
 
-                  className="
-                    text-gray-600
-                    mb-4
-                    flex-grow
-                    text-sm
-                    leading-relaxed
-                  "
 
-                >
+</motion.div>
 
-                  {project.description}
 
-                </p>
 
 
 
 
 
-                {project.gains && (
+<div
 
-                  <div
+className="
+grid
+grid-cols-1
+md:grid-cols-2
+gap-8
+"
 
-                    className="
-                      mb-4
-                      hidden
-                      md:block
-                    "
+>
 
-                  >
 
-                    <ProjectGains gains={project.gains}/>
+{
 
-                  </div>
+PROJECTS.map(
+(project,index)=>(
 
-                )}
 
 
+<motion.article
 
 
+key={project.id}
 
 
-                <div
+initial={{
+opacity:0,
+y:30
+}}
 
-                  className="
-                    mb-4
-                    p-4
-                    bg-gray-50
-                    rounded-lg
-                    border
-                    border-gray-100
-                    space-y-3
-                  "
 
-                >
+whileInView={{
+opacity:1,
+y:0
+}}
 
 
-                  <div className="flex gap-2 items-start">
+viewport={{
+once:true
+}}
 
 
-                    <CheckCircle2
+transition={{
+delay:index*0.1
+}}
 
-                      size={16}
 
-                      className="
-                        text-green-600
-                        mt-1
-                      "
 
-                    />
+className="
+bg-white
+rounded-xl
+overflow-hidden
+shadow-lg
+border
+border-gray-100
+flex
+flex-col
+group
+"
 
+>
 
-                    <p>
 
-                      <span className="font-bold text-secondary">
-                        Objectif :
-                      </span>{" "}
 
-                      {project.objectives}
+<button
 
-                    </p>
 
+type="button"
 
-                  </div>
 
+onClick={()=>openDemo(project)}
 
 
+aria-label={
+`Voir la démonstration ${project.title}`
+}
 
 
-                  <div className="flex gap-2 items-start">
 
+className="
+relative
+aspect-video
+overflow-hidden
+bg-gray-200
+"
 
-                    <CheckCircle2
+>
 
-                      size={16}
 
-                      className="
-                        text-primary
-                        mt-1
-                      "
 
-                    />
+<img
 
 
-                    <p>
+src={project.image}
 
-                      <span className="font-bold text-secondary">
-                        Résultat :
-                      </span>{" "}
 
-                      {project.results}
+alt={`Aperçu du projet ${project.title}`}
 
-                    </p>
 
+width="800"
 
-                  </div>
 
+height="450"
 
-                </div>
 
+loading="lazy"
 
 
+decoding="async"
 
 
 
-                <div
+onError={handleImageError}
 
-                  className="
-                    flex
-                    flex-col
-                    sm:flex-row
-                    gap-3
-                    mt-auto
-                    pt-4
-                    border-t
-                    border-gray-100
-                  "
 
-                >
 
+className="
+w-full
+h-full
+object-cover
+transition-transform
+duration-500
+group-hover:scale-110
+"
 
+/>
 
 
 
-                  <a
 
-                    href={project.repoLink}
 
-                    target="_blank"
+<div
 
-                    rel="noopener noreferrer"
+className="
+absolute
+inset-0
+bg-black/40
+flex
+items-center
+justify-center
+"
 
-                    className="
-                      inline-flex
-                      items-center
-                      justify-center
-                      min-h-[44px]
-                      px-3
-                      text-gray-600
-                      font-semibold
-                    "
+>
 
-                  >
 
-                    <Github
 
-                      size={18}
+<span
 
-                      className="mr-2"
+className="
+inline-flex
+items-center
+gap-2
+px-4
+py-2
+bg-white
+text-secondary
+rounded-full
+font-semibold
+shadow-lg
+text-sm
+"
 
-                    />
+>
 
-                    Code
 
 
-                  </a>
+<Play
 
+size={18}
 
+className="
+text-primary
+fill-primary
+"
 
+/>
 
 
 
+{
+hasLiveDemo(project.demoLink)
+?
+"Voir la démo"
+:
+"Voir le projet"
+}
 
-                  <button
 
-                    type="button"
+</span>
 
-                    onClick={() => openDemo(project)}
 
-                    className="
-                      inline-flex
-                      items-center
-                      justify-center
-                      min-h-[44px]
-                      px-4
-                      py-2
-                      bg-primary
-                      text-white
-                      rounded-lg
-                      font-semibold
-                      hover:bg-blue-700
-                      transition-colors
-                      w-full
-                      sm:w-auto
-                      sm:ml-auto
-                      touch-manipulation
-                    "
+</div>
 
-                  >
 
-                    {hasLiveDemo(project.demoLink)
-                      ? "Démo interactive"
-                      : "Voir le projet"
-                    }
 
 
-                    <ExternalLink
 
-                      size={16}
+{
+hasLiveDemo(project.demoLink)
+&&
 
-                      className="ml-2"
 
-                    />
+<span
 
-                  </button>
+className="
+absolute
+top-3
+right-3
+bg-green-600
+text-white
+text-xs
+font-bold
+px-3
+py-1
+rounded-full
+"
 
+>
 
+Démo live
 
-                </div>
+</span>
 
 
+}
 
-              </div>
 
 
+</button>
 
-            </motion.article>
 
 
-          ))}
 
 
 
-        </div>
 
+<div
 
+className="
+p-5
+flex
+flex-col
+flex-1
+"
 
-      </div>
+>
 
 
 
+<h3
 
+className="
+text-xl
+font-bold
+text-secondary
+mb-2
+"
 
-      <ProjectDemoModal
+>
 
-        project={activeProject}
+{project.title}
 
-        onClose={closeDemo}
+</h3>
 
-      />
 
 
 
-    </section>
 
-  );
+<p
+
+className="
+text-xs
+text-gray-400
+mb-3
+"
+
+>
+
+{project.context}
+
+</p>
+
+
+
+
+
+
+<div
+
+className="
+flex
+flex-wrap
+gap-2
+mb-4
+"
+
+>
+
+
+{
+
+project.tags.map(tag=>(
+
+
+<span
+
+key={tag}
+
+className="
+bg-blue-50
+text-blue-700
+text-xs
+font-semibold
+px-3
+py-1
+rounded-full
+"
+
+>
+
+{tag}
+
+</span>
+
+
+))
+
+
+}
+
+
+</div>
+
+
+
+
+
+
+
+<p
+
+className="
+text-gray-600
+text-sm
+leading-relaxed
+mb-5
+"
+
+>
+
+{project.description}
+
+</p>
+
+
+
+
+
+
+
+
+{
+project.gains
+&&
+
+
+<div
+
+className="
+mb-5
+block
+"
+
+>
+
+
+<ProjectGains
+
+gains={project.gains}
+
+/>
+
+
+</div>
+
+
+}
+
+
+
+
+
+
+
+
+<div
+
+className="
+bg-gray-50
+rounded-lg
+border
+p-4
+space-y-3
+mb-5
+"
+
+>
+
+
+
+<div
+
+className="
+flex
+gap-2
+text-sm
+"
+
+>
+
+
+<CheckCircle2
+
+size={17}
+
+className="
+text-green-600
+shrink-0
+"
+
+/>
+
+
+
+<p>
+
+
+<strong>
+Objectif :
+</strong>
+
+
+{" "}
+
+
+{project.objectives}
+
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div
+
+className="
+flex
+gap-2
+text-sm
+"
+
+>
+
+
+<CheckCircle2
+
+size={17}
+
+className="
+text-blue-600
+shrink-0
+"
+
+/>
+
+
+
+<p>
+
+
+<strong>
+Résultat :
+</strong>
+
+
+{" "}
+
+
+{project.results}
+
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div
+
+className="
+mt-auto
+pt-4
+border-t
+flex
+flex-col
+sm:flex-row
+gap-3
+"
+
+>
+
+
+
+
+
+<a
+
+
+href={project.repoLink}
+
+
+target="_blank"
+
+
+rel="noopener noreferrer"
+
+
+aria-label={
+`Voir le code source ${project.title}`
+}
+
+
+
+className="
+flex
+items-center
+justify-center
+gap-2
+font-semibold
+text-gray-700
+min-h-[44px]
+"
+
+>
+
+
+
+<Github size={18}/>
+
+
+Code
+
+
+</a>
+
+
+
+
+
+
+
+<button
+
+
+type="button"
+
+
+onClick={()=>openDemo(project)}
+
+
+
+aria-label={
+`Ouvrir le projet ${project.title}`
+}
+
+
+
+className="
+flex
+items-center
+justify-center
+gap-2
+bg-primary
+text-white
+rounded-lg
+px-4
+min-h-[44px]
+font-semibold
+hover:bg-blue-700
+transition-colors
+"
+
+>
+
+
+
+Voir projet
+
+
+<ExternalLink size={16}/>
+
+
+</button>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</motion.article>
+
+
+
+)
+
+
+)
+
+
+}
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<ProjectDemoModal
+
+
+project={activeProject}
+
+
+onClose={closeDemo}
+
+
+/>
+
+
+
+
+
+</section>
+
+
+);
 
 
 };
