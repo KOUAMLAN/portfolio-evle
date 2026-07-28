@@ -340,7 +340,7 @@ Error generating stack: `+u.message+`
               `,"aria-label":`Visiter mon profil ${r.name}`,children:I.jsx(r.icon,{size:20,className:`
                   group-hover:scale-110
                   transition-transform
-                `})},i))})]})}),qx=Y.lazy(()=>yi(()=>import("./About-DYDL6lV9.js"),[])),Zx=Y.lazy(()=>yi(()=>import("./Skills-CR8OluO-.js"),[])),Jx=Y.lazy(()=>yi(()=>import("./Projects-BnxzS9t2.js"),[])),bx=Y.lazy(()=>yi(()=>import("./Contact-B6Kqqp37.js"),[])),ew=Y.lazy(()=>yi(()=>import("./AIChat--bueCSKN.js"),[])),tw=()=>I.jsx("div",{className:`
+                `})},i))})]})}),qx=Y.lazy(()=>yi(()=>import("./About-CwFtPzu_.js"),[])),Zx=Y.lazy(()=>yi(()=>import("./Skills-C7xn0dHb.js"),[])),Jx=Y.lazy(()=>yi(()=>import("./Projects-BVPIFVF-.js"),[])),bx=Y.lazy(()=>yi(()=>import("./Contact-DxB5A3hv.js"),[])),ew=Y.lazy(()=>yi(()=>import("./AIChat-BuxTyAih.js"),[])),tw=()=>I.jsx("div",{className:`
       min-h-[200px]
       flex
       items-center
